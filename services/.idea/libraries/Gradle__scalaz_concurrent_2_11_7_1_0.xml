@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: scalaz-concurrent_2.11-7.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.scalaz/scalaz-concurrent_2.11/7.1.0/ff2759b50e2c8859f8e84a115e45259de52a8006/scalaz-concurrent_2.11-7.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.scalaz/scalaz-concurrent_2.11/7.1.0/818ae28ca32a759e6f55cfbb0708e8d6fc2614b0/scalaz-concurrent_2.11-7.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

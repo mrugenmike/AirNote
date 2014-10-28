@@ -13,6 +13,8 @@ public class NoteAppConfiguration {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(NoteAppConfiguration.class, args);
+
+
     }
 }
 
