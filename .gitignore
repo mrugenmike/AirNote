@@ -6,3 +6,4 @@ services/.gradle/*
 services/bin
 services/build
 application/.idea
+application/node_modules
