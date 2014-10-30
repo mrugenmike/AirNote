@@ -16,14 +16,14 @@ import java.util.Locale;
 
 @Component
 public class NotesService {
-    @Autowired
-    RestTemplate restTemplate;
+    //@Autowired
+    RestTemplate restTemplate = new RestTemplate();
 
     final private String targetPath = "/AirNote";
 
     public void createNote(NoteCreationRequest request) {
 
-        HashMap<String, String> uriVariables = new HashMap<>();
+        HashMap<String, String> uriVariables = new HashMap<String,String>();
         ResponseEntity<NoteUploadResponse> noteUploadResponseResponseEntity = restTemplate.postForEntity("https://api-content.dropbox.com/1/files_put/auto/AirNote/some.txt", request.getContent(), NoteUploadResponse.class, uriVariables);
         NoteUploadResponse body = noteUploadResponseResponseEntity.getBody();
     }

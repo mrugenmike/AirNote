@@ -1,6 +1,6 @@
-services/.idea/*
-services/.idea
-services/*ipr
+services/**.idea
+services/.idea/**
+services/*.ipr
 services/*.iml
 services/.gradle/*
 services/bin
