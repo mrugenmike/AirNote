@@ -1,17 +1,18 @@
 package com.airnote.services.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class UserService {
+    @Autowired
+    private RestTemplate restTemplate;
 
-    final RestTemplate restTemplate = new RestTemplate();
     public UserDetails fetchUserDetails(String accessToken) throws IncorrectTokenException {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization","Bearer "+accessToken);

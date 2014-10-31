@@ -16,7 +16,7 @@ import java.util.Locale;
 
 @Component
 public class NotesService {
-    //@Autowired
+    @Autowired
     RestTemplate restTemplate = new RestTemplate();
 
     final private String targetPath = "/AirNote";
