@@ -4,10 +4,6 @@ var request = require("request");
 
 //var app = require("../app")
 var APP_KEY="nm2wxgh9jqaspx0";
-
-
-
-
 var APP_SECRET = "off9wuy78rttsub";
 
 var dropBoxClient = {

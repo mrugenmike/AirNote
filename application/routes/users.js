@@ -2,14 +2,8 @@ var express = require('express'),
     router = express.Router(),
     client = require("../lib/dropboxHelper"),
     request = require('request'),
-    url = require('url');
-
-var APP_KEY="nm2wxgh9jqaspx0";
-
-
-
-
-
+    url = require('url'),
+    backEndClient = require("../lib/backEndHelper");
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -41,16 +35,13 @@ router.get('/dashboard', function(req, res) {
         // extract bearer token
         var token = data.access_token;
         console.log(token);
-        // use the bearer token to make API calls
-        request.get('https://api.dropbox.com/1/account/info', {
-            headers: { Authorization: 'Bearer ' + token }
-        }, function (error, response, body) {
-            console.log(JSON.parse(body));
-            //res.send('Logged in successfully as ' + JSON.parse(body).display_name + '.');
-            res.render("dashboard",{"title":"Welcome Home Chap!", "name": JSON.parse(body).display_name});
-        });
-    });
 
+        backEndClient.performGetUserInfoRequest('http://localhost:8080/api/users', token,
+            function (error, response, body){
+              res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
+            }
+        );
+    });
    });
 
 router.get('/auth',function(req,res){
