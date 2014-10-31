@@ -17,11 +17,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/dashboard', function(req, res) {
-<<<<<<< HEAD
-=======
-  client.getAccessToken()
-  res.render("dashboard",{"title":"Welcome Home Chap!"});
->>>>>>> Added produces JSON for get user info API
 
     if (req.query.error) {
         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
