@@ -11,7 +11,7 @@ public class UserResource {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET,produces="application/json")
     public UserDetails createNote(@RequestHeader("Authorization") String accessToken) throws IncorrectTokenException {
         return userService.fetchUserDetails(accessToken);
     }

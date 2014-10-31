@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class ExceptionAdvice {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(IncorrectTokenException.class)
     public ResponseEntity<Map<String,Object>> handleIncorrectTokenException(IncorrectTokenException exception){

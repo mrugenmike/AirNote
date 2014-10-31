@@ -33,6 +33,7 @@ var dropBoxClient = {
             }
         }));
     },
+<<<<<<< HEAD
     generateRedirectURI: function(req){
         return url.format({
             protocol: req.protocol,
@@ -52,6 +53,12 @@ var dropBoxClient = {
                 pass: APP_SECRET
             }
         },callback);
+=======
+    getAccessToken:function(req,res,callback){
+        var code = req.query.code;
+        var state = req.query.state;
+        
+>>>>>>> Added produces JSON for get user info API
     }
 };
 
