@@ -1,18 +1,24 @@
 package com.airnote.services.notes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Date;
+
 public class NoteCreationRequest {
-String accessToken;
-String content;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
+    @JsonProperty("content") String content;
+    @JsonProperty("title") String title;
+    @JsonProperty("creationTime")Date creationTime;
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public Date getCreationTime() {
+        return creationTime;
     }
 
     public String getContent() {
         return content;
+    }
+
+    public String getTitle(){
+        return title;
     }
 }

@@ -30,6 +30,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.1.8.RELEASE")
     compile('javax.validation:validation-api:1.1.0.Final')
     compile('org.hibernate:hibernate-validator:5.0.1.Final')
+    compile('org.mongodb:mongo-java-driver:2.12.4')
     testCompile('junit:junit:4.11')
     testCompile('org.springframework:spring-test')
     testCompile('org.mockito:mockito-all:1.9.5')
