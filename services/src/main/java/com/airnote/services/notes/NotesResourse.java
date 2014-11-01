@@ -13,7 +13,7 @@ public class NotesResourse {
     NotesService notesService;
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public NoteMetaInfo createNote(@RequestBody NoteCreationRequest request,@RequestHeader("Authorization") String accessToken ){
+    public NoteMetaInfo createNote(@RequestBody NoteCreationRequest request,@RequestHeader("Authorization") String accessToken){
        return notesService.createNote(request,accessToken);
     }
 }

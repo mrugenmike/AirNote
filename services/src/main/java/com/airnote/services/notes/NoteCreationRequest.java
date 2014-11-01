@@ -9,6 +9,11 @@ public class NoteCreationRequest {
     @JsonProperty("content") String content;
     @JsonProperty("title") String title;
     @JsonProperty("creationTime")Date creationTime;
+    @JsonProperty("userId") String userId;
+
+    public String getUserId() {
+        return userId;
+    }
 
     public Date getCreationTime() {
         return creationTime;

@@ -17,10 +17,8 @@ public class NotesService {
     @Autowired
     NoteStorageService storageService;
 
-    final private String targetPath = "/AirNote";
-
     public NoteMetaInfo createNote(NoteCreationRequest request,String accessToken) {
-        NoteUploadResponse noteUploadResponse = dropBoxClient.storeNote(accessToken, request.getTitle(), request.getContent());
-        return storageService.storeNoteInfo(noteUploadResponse);
+        final NoteUploadResponse noteUploadResponse = dropBoxClient.storeNote(accessToken, request.getTitle(), request.getContent());
+        return storageService.storeNoteInfo(noteUploadResponse,request.getTitle(),request.getUserId());
     }
 }

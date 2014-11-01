@@ -15,7 +15,7 @@ public class UserService {
 
     public UserDetails fetchUserDetails(String accessToken) throws IncorrectTokenException {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization","Bearer "+accessToken);
+        headers.set("Authorization",accessToken);
         HttpEntity<String> stringHttpEntity = new HttpEntity<String>(headers);
         try{
             return restTemplate.exchange("https://api.dropbox.com/1/account/info", HttpMethod.GET, stringHttpEntity, UserDetails.class).getBody();
