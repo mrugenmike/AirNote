@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug = require('debug')('application');
+var debug = require('debug')('Airnote');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);

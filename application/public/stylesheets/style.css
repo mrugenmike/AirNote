@@ -1,8 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.bgImageContainer{
+    background: url('/images/notes.jpg');
+    min-height: 120%;
+    min-width: 120%;
+    position:absolute;
+    -webkit-filter: blur(2px);
+    z-index:0;
 }
-
 a {
   color: #00B7FF;
+}
+.content{
+    z-index:10;
+    position:relative;
+}
+
+#text { width: 200px;
 }

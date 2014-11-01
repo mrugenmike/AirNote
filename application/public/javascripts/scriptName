@@ -1,0 +1,9 @@
+var textToAdd = "Login with Dropbox";
+var placeHolder = 0;
+
+var textAdder = setInterval(function(){
+    document.getElementById("text").innerHTML += textToAdd.charAt(placeHolder);
+    if (++placeHolder == textToAdd.length){
+        clearInterval(textAdder);
+    }
+}, 100);

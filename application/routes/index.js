@@ -3,8 +3,6 @@ var router = express.Router();
 var client = require("../lib/dropboxHelper");
 
 
-
-
 /* GET home page. */
 router.get('/', function(req, res) {
   console.log("request came from: "+req.userAgent)
