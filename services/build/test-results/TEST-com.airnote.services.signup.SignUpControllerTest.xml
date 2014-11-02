@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.airnote.services.signup.SignUpControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-10-31T11:36:48" hostname="Mrugens-MacBook-Pro.local" time="0.001">
+<testsuite name="com.airnote.services.signup.SignUpControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-11-02T01:43:18" hostname="Mrugens-MacBook-Pro.local" time="0.003">
   <properties/>
-  <testcase name="itShouldReturnASignUpRequest" classname="com.airnote.services.signup.SignUpControllerTest" time="0.001"/>
+  <testcase name="itShouldReturnASignUpRequest" classname="com.airnote.services.signup.SignUpControllerTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
