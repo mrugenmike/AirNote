@@ -8,7 +8,7 @@ var endpoint = 'api/users';
 var backEndClient = {
     performGetUserInfoRequest: function(endpoint, code, callback) {
         request.get(endpoint, {
-            headers: { Authorization: code },
+            headers: { Authorization: "Bearer "+code },
             json: true
         }, callback);
 }
