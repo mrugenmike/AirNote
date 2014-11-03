@@ -1,26 +1,23 @@
+package com.airnote.services;
+
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.UnknownHostException;
 
 
-@Controller
 @EnableAutoConfiguration
 @ComponentScan
-@PropertySource(value = "classpath:/application.properties")
+@PropertySource(value = "classpath:/app.properties",ignoreResourceNotFound = false)
 public class NoteAppConfiguration {
 
     public static void main(String[] args) throws Exception {

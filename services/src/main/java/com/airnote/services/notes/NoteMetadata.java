@@ -1,10 +1,11 @@
 package com.airnote.services.notes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mongodb.DBObject;
 
 import java.util.Date;
 
-public class NoteUploadResponse {
+public class NoteMetadata {
     @JsonProperty("size") String size;
     @JsonProperty("rev") String rev;
     @JsonProperty("thumb_exists") Boolean thumb_exists;
@@ -64,6 +65,63 @@ public class NoteUploadResponse {
 
     public Date getClient_mtime() {
         return client_mtime;
+    }
+
+    public static NoteMetadata instance(DBObject info) {
+        final NoteMetadata noteUploadResponse = new NoteMetadata();
+        noteUploadResponse.setBytes((Integer) info.get("bytes"));
+        noteUploadResponse.setSize((String) info.get("size"));
+        noteUploadResponse.setRev((String) info.get("rev"));
+        noteUploadResponse.setRev((String) info.get("rev"));
+        return noteUploadResponse;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setRev(String rev) {
+        this.rev = rev;
+    }
+
+    public void setThumb_exists(Boolean thumb_exists) {
+        this.thumb_exists = thumb_exists;
+    }
+
+    public void setBytes(Integer bytes) {
+        this.bytes = bytes;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setIs_dir(Boolean is_dir) {
+        this.is_dir = is_dir;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setRoot(String root) {
+        this.root = root;
+    }
+
+    public void setMime_type(String mime_type) {
+        this.mime_type = mime_type;
+    }
+
+    public void setRevision(Integer revision) {
+        this.revision = revision;
+    }
+
+    public void setClient_mtime(Date client_mtime) {
+        this.client_mtime = client_mtime;
     }
 }
 

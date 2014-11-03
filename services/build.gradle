@@ -31,8 +31,9 @@ dependencies {
     compile('javax.validation:validation-api:1.1.0.Final')
     compile('org.hibernate:hibernate-validator:5.0.1.Final')
     compile('org.mongodb:mongo-java-driver:2.12.4')
+    testCompile('org.springframework.boot:spring-boot-starter-test:1.1.8.RELEASE')
     testCompile('junit:junit:4.11')
-    testCompile('org.springframework:spring-test')
+    testCompile('org.easytesting:fest-assert:1.4')
     testCompile('org.mockito:mockito-all:1.9.5')
     testCompile('org.specs2:specs2_2.11:2.4.2')
     compile('com.dropbox.core:dropbox-core-sdk:1.7.7')
@@ -44,4 +45,8 @@ tasks.withType(ScalaCompile) {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
+}
+
+test {
+    systemProperty "spring.profiles.active","dev"
 }
