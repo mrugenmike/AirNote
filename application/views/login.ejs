@@ -4,20 +4,18 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/button.css' />
-      <link rel='javascript' href='/javascripts/scriptName'/>
-    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
-
+      <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <div class="bgImageContainer">
-  </div>
+  <video autoplay id="bgvid" loop >
+      <source src="/videos/test_video.mov" type="video/mp4">
+  </video>
+  <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhttp://localhost:3000/&amp;layout=standard&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp" style="overflow:hidden;width:100%;height:80px;" scrolling="no" frameborder="0" allowTransparency="true"><a href="http://www.trivoo.net" class="fbook">www.trivoo.net</a></iframe>
   <div class="content"> ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-     <form id="loginform" method="get" action="/users/auth">
-         <div class="logo"></div>
-     <p> Welcome to AirNote</p>
-         <h1> SignIn With</h1>
-     <button id="loginBtn" type="submit"></button>
+  <form id="login    form" method="get" action="/users/auth">
+      <p> Welcome to AirNote</p>
+      <button id="loginBtn" type="submit"></button>
      </form>
-  </div>
+      </div>
   </body>
 </html>
