@@ -22,7 +22,7 @@ var dropBoxClient = {
         });
     },
     isAuthenticated: function(req,res){
-  return false;
+  return true;
     },
     authenticateUser: function(req,res){
         var csrfToken = this.generateCSRFToken();
