@@ -42,17 +42,15 @@ router.get('/dashboard', function(req, res) {
 
         backEndClient.performGetUserInfoRequest('http://localhost:8080/api/users', token,
             function (error, response, body){
-              //res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
-              uid = body.uid;
-              username = body.display_name;
+              res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
             }
         );
 
-        notesClient.createNotesRequest('http://localhost:8080/api/notes', token, uid,
-          function(error, respose, body){
-            res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
-          }
-        );
+        //notesClient.createNotesRequest('http://localhost:8080/api/notes', token, uid,
+        //  function(error, respose, body){
+        //    res.render("dashboard",{"title":"Welcome Home Chap!", "name": username});
+        //  }
+        //);
     });
    });
 
