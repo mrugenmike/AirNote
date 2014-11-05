@@ -2,32 +2,22 @@
 <html>
 <head>
     <title><%= title %></title>
-    <!--<link rel='stylesheet' href='/stylesheets/dashboard.css' />-->
-    <!--<link href='http://fonts.googleapis.com/css?family=News+Cycle:400,700' rel='stylesheet' type='text/css'>-->
-    <!--<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">-->
-
 </head>
-<body ng-app="F1FeederApp" ng-controller="driversController">
-<table>
-    <thead>
-    <tr><th colspan="4">Drivers Championship Standings</th></tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="driver in driversList">
-        <td>{{$index + 1}}</td>
-        <td>
-            <img src="img/flags/{{driver.Driver.nationality}}.png" />
-            {{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
-        </td>
-        <td>{{driver.Constructors[0].name}}</td>
-        <td>{{driver.points}}</td>
-    </tr>
-    </tbody>
-</table>
+<body ng-app="AirNoteApp" ng-controller="notesController">
+<lable>"{{username}}"</lable>
+<div id="notesColumn">
+    <div ng-repeat="note in notesList">
+        <div class="note">
+        <div class="noteTitle">
+            <label>{{note.title}}</label>
+        </div>
+        </div>
+    </div>
+</div>
 <script src="/javascripts/angular.js"></script>
 <script src="/javascripts/angular-route.js"></script>
 <script src="/javascripts/application.js"></script>
 <script src="/javascripts/noteServices.js"></script>
-<script src="/javascripts/driversController.js"></script>
+<script src="/javascripts/notesController.js"></script>
 </body>
 </html>
