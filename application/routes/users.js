@@ -43,9 +43,9 @@ router.get('/dashboard', function(req, res) {
         var token = data.access_token;
         backEndClient.performGetUserInfoRequest('http://localhost:8080/api/users', token,
             function (error, response, body){
-                res.cookie('accessToken',token,{secure: true });
-                res.cookie('userName',body.display_name,{secure: true });
-                res.cookie('uid',body.uid,{secure: true });
+                res.cookie('accessToken',token,{secure: false });
+                res.cookie('userName',body.display_name,{secure: false });
+                res.cookie('uid',body.uid,{secure: false });
                 res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
             }
         );

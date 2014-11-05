@@ -4,7 +4,7 @@
     <title><%= title %></title>
 </head>
 <body ng-app="AirNoteApp" ng-controller="notesController">
-<lable>"{{username}}"</lable>
+<label>{{username}}</label>
 <div id="notesColumn">
     <div ng-repeat="note in notesList">
         <div class="note">
@@ -15,6 +15,7 @@
     </div>
 </div>
 <script src="/javascripts/angular.js"></script>
+<script src="/javascripts/angular-cookies.js"></script>
 <script src="/javascripts/angular-route.js"></script>
 <script src="/javascripts/application.js"></script>
 <script src="/javascripts/noteServices.js"></script>

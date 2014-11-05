@@ -1,4 +1,4 @@
-var controller = angular.module('AirNoteApp.controllers', []);
+var controller = angular.module('AirNoteApp.controllers', ['ngCookies']);
 
 controller.config(function($httpProvider) {
     //Enable cross domain calls
@@ -8,22 +8,18 @@ controller.config(function($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-controller.controller('notesController', function($scope, notesAPIservice) {
+controller.controller('notesController', function($scope, notesAPIservice,$cookieStore) {
         $scope.nameFilter = null;
         $scope.notesList = [];
         $scope.username=null;
         notesAPIservice.getUserInfo().success(function (response) {
-            //Dig into the responde to get the relevant data
-            //$scope.driversList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-            console.log("response is" + response.display_name);
-            $scope.username=response.display_name;
+            $scope.username =response.display_name
 
         }).error(function(data, status, headers, config){
-            console.log("Error: "+status);
+            $scope.username="oops we had an error!"
         });
 
         notesAPIservice.listNotes().success(function(response){
-            console.log("response is" + response[0].noteId);
             $scope.notesList = response;
         });
     });
