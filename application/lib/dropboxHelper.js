@@ -1,13 +1,13 @@
 var crypto = require('crypto');
-var url = require('url');
+var url = require('url'),
+    cookieParser = require('cookie-parser');
 var request = require("request");
 
-//var app = require("../app")
+var app = require("express")()
 var APP_KEY="nm2wxgh9jqaspx0";
 
 
-
-
+app.use(cookieParser('mycookie'));
 var APP_SECRET = "off9wuy78rttsub";
 
 var dropBoxClient = {
@@ -16,7 +16,10 @@ var dropBoxClient = {
             .replace(/\//g, '-').replace(/\+/g, '_');
     },
     isAuthenticated: function(req,res){
-    return true;
+        if(req.cookies.accessToken){
+            return true;
+             }
+        return false;
     },
     authenticateUser: function(req,res){
         var csrfToken = this.generateCSRFToken();
