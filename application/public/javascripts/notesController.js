@@ -21,6 +21,8 @@ controller.controller('notesController', function($scope, notesAPIservice,$cooki
 
         notesAPIservice.listNotes().success(function(response){
             $scope.notesList = response;
+        }).error(function(data){
+            $scope.notesList=[]
         });
     });
 
