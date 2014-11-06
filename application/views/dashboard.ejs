@@ -2,18 +2,31 @@
 <html>
 <head>
     <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="AirNoteApp" ng-controller="notesController">
-<label>{{username}}</label>
-<div id="notesColumn">
-    <div ng-repeat="note in notesList">
-        <div class="note">
-        <div class="noteTitle">
-            <label>{{note.title}}</label>
-        </div>
+<h2>Welcome<label>{{username}}</label></h2>
+<div id="maincontainer">
+
+    <div id="topsection"><div class="innertube"><p>AirNote</p></div></div>
+
+    <div id="contentwrapper">
+        <div id="contentcolumn">
+            <div class="innertube"><b>Content</b> <script type="text/javascript">filltext(45)</script></div>
         </div>
     </div>
-    <label>{{noteId}}</label>
+
+    <div id="leftcolumn">
+        <div ng-repeat="note in notesList">
+            <li>
+                <a>{{note.title}}</a> <script type="text/javascript">filltext(15)</script>
+            </li>
+
+    </div>
+    </div>
+
+
 </div>
 <script src="/javascripts/angular.js"></script>
 <script src="/javascripts/angular-cookies.js"></script>
