@@ -20,12 +20,12 @@ router.get('/dashboard', function(req, res) {
 
     if (client.isAuthenticated(req,res) )
     {
-        res.render("dashboard",{"title":"Welcome Home"+ req.cookies.userName,"name": body.display_name});
+        res.render("dashboard",{"title":"Welcome Home"+ req.cookies.userName,"name": req.cookies.userName});
         return ;
     }
 
     if (req.query.error) {
-        return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
+        return res.redirect("/");
     }
 
     // check CSRF token
@@ -38,7 +38,8 @@ router.get('/dashboard', function(req, res) {
     client.getToken(req,res, function (error, response, body) {
         var data = JSON.parse(body);
         if (data.error) {
-            return res.send('ERROR: ' + data.error);
+            console.log("in dashboard")
+            return res.redirect("/");
         }
         var token = data.access_token;
         backEndClient.performGetUserInfoRequest('http://localhost:8080/api/users', token,
@@ -46,7 +47,8 @@ router.get('/dashboard', function(req, res) {
                 res.cookie('accessToken',token,{secure: false });
                 res.cookie('userName',body.display_name,{secure: false });
                 res.cookie('uid',body.uid,{secure: false });
-                res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
+                //res.render("dashboard",{"title":"Welcome Home Chap!", "name": body.display_name});
+                res.redirect("/users/dashboard");
             }
         );
     });

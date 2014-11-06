@@ -9,6 +9,7 @@ router.get('/', function(req, res) {
   if(client.isAuthenticated(req,res)){
        res.render("dashboard",{"title":"Dashboard"});
   }else{
+      console.log("Not authenticated")
        res.render("login",{"flash":"Kindly Login to continue","title":"Login Page"});
   }
 
