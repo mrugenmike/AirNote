@@ -12,6 +12,7 @@ controller.controller('notesController', function($scope, notesAPIservice,$cooki
         $scope.nameFilter = null;
         $scope.notesList = [];
         $scope.username=null;
+        $scope.noteId=null;
         notesAPIservice.getUserInfo().success(function (response) {
             $scope.username =response.display_name
 
@@ -23,6 +24,10 @@ controller.controller('notesController', function($scope, notesAPIservice,$cooki
             $scope.notesList = response;
         }).error(function(data){
             $scope.notesList=[]
+        });
+
+        notesAPIservice.createNote().success(function(response){
+            $scope.noteId = response.noteId;
         });
     });
 
