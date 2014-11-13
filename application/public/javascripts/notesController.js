@@ -13,6 +13,7 @@ controller.controller('notesController', function($scope, notesAPIservice,$cooki
         $scope.notesList = [];
         $scope.username=null;
         $scope.noteId=null;
+        $scope.note=null;
         notesAPIservice.getUserInfo().success(function (response) {
             $scope.username =response.display_name
 
@@ -28,6 +29,18 @@ controller.controller('notesController', function($scope, notesAPIservice,$cooki
 
         notesAPIservice.createNote().success(function(response){
             $scope.noteId = response.noteId;
+        });
+
+        notesAPIservice.fetchNote().success(function(response){
+            $scope.note = response;
+        });
+
+        notesAPIservice.updateNote().success(function(response){
+            $scope.note = response;
+        });
+
+        notesAPIservice.deleteNote().success(function(response){
+
         });
     });
 
