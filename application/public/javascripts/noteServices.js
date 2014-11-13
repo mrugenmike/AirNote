@@ -38,7 +38,6 @@ angular.module('AirNoteApp.noteServices', []).
 
         notesAPI.updateNote = function(){
             return $http({
-                headers:
                 })
         }
 
