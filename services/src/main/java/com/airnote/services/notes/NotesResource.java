@@ -1,5 +1,6 @@
 package com.airnote.services.notes;
 
+import com.airnote.services.integration.NoteDeletionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,13 @@ public class NotesResource {
     public Note fetchNote(@PathVariable String userId,@PathVariable String noteId,@RequestHeader("Authorization") String accessToken) throws NoteNotFoundException {
         return notesService.fetchNote(userId, noteId, accessToken).orElseThrow(NoteNotFoundException::new);
     }
+
+    @RequestMapping(value={"/{userId}/{noteId}"},method=RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> deleteNote(@PathVariable String userId,@PathVariable String noteId,@RequestHeader("Authorization") String accessToken) throws NoteDeletionException {
+        notesService.deleteNote(userId, noteId, accessToken);
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+        }
 
 
 }

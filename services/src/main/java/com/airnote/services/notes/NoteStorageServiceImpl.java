@@ -43,4 +43,10 @@ public class NoteStorageServiceImpl implements NoteStorageService {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void deleteNoteMetaInfo(String userId, String noteId) {
+        DBObject byIdandUserId = QueryBuilder.start("_id").is(noteId).and("userId").is(userId).get();
+        noteMetaInfos.remove(byIdandUserId,WriteConcern.ACKNOWLEDGED);
+    }
 }

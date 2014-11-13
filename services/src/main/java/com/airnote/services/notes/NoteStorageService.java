@@ -9,4 +9,6 @@ public interface NoteStorageService {
     List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit);
 
     Optional<NoteMetaInfo> fetchNoteInfoBy(String userId, String noteId);
+
+    void deleteNoteMetaInfo(String userId, String noteId);
 }

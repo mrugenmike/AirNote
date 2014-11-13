@@ -9,4 +9,6 @@ public interface DropBoxClient {
     NoteMetadata storeNote(String accessToken,String title,String content);
 
     String fetchNoteContent(String filePath, String accessToken) throws FileContentException;
+
+    void deleteNote(String filePath, String accessToken) throws NoteDeletionException;
 }

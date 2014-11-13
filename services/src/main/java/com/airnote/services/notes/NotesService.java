@@ -2,6 +2,7 @@ package com.airnote.services.notes;
 
 import com.airnote.services.integration.DropBoxClient;
 import com.airnote.services.integration.FileContentException;
+import com.airnote.services.integration.NoteDeletionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -39,5 +40,15 @@ public class NotesService {
                 return Optional.empty();
             }
         });
+    }
+
+    public void deleteNote(String userId, String noteId, String accessToken) throws NoteDeletionException {
+        Optional<NoteMetaInfo> noteMetaInfo = storageService.fetchNoteInfoBy(userId, noteId);
+        if (noteMetaInfo.isPresent()){
+            dropBoxClient.deleteNote(noteMetaInfo.get().getFilePath(), accessToken);
+            storageService.deleteNoteMetaInfo(userId, noteId);
+        }else {
+            throw new NoteDeletionException("No Note Found with id "+noteId);
+        }
     }
 }
