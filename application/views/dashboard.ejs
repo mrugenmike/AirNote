@@ -6,28 +6,69 @@
     <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="AirNoteApp" ng-controller="notesController">
-<h2>Welcome<label>{{username}}</label></h2>
+<h2>Welcome <label>{{username}}</label></h2>
 <div id="maincontainer">
 
-    <div id="topsection"><div class="innertube"><p>AirNote</p></div></div>
+    <div id="topSection"><div class="innerTube">
+    <p>AirNote</p></div></div>
 
-    <div id="contentwrapper">
-        <div id="contentcolumn">
-            <div class="innertube"><b>Content</b> <script type="text/javascript">filltext(45)</script></div>
+    <div id="contentWrapper">
+        <div id="contentColumn">
+
+            <div class="innerTube"><b>
+
+                    <div class="content"> ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+
+                    <span ng-hide="creating">
+                    <button id="createNote" class="btn" ng-click="creating = true" ng-click ="editing = false"><b>New Note</b></button>
+                    </span>
+                    <span ng-show="creating">
+                    <div class="createNoteTitle" >
+                        <input type ="text" class="labelNewMessage" value="New Note" readonly>
+                        <input type="text" ng-model="name" class="createSubject" spellcheck="true" tabindex="1" placeholder="Title">
+                    </div>
+                        <div class="createNoteContent"><textarea></textarea>
+                        <button class="btn" ng-click="creating = false"><b>Save</b></button>
+                        </div>
+                        </span>
+                    </div>
+
+
+
+
+        </b> <script type="text/javascript">filltext(45)</script>
+
+            <div class="updateNote" ><li>
+                    <span ng-show="editing">
+                    <div class="updateNoteTitle"  >
+                        <input type ="text" class="labelUpdateNote" value="Update Note" readonly>
+                        <input type="text" ng-model="name" class="updateSubject" spellcheck="true" tabindex="1" placeholder="Title" ng-value ={{note.title}}>
+                       {{note.title}} <script type="text/javascript">filltext(15)</script>
+                        <div class="createNoteContent"><textarea name ="content" ng-value = {{note.content}}></textarea><script type="text/javascript">filltext(15)</script>
+                           <br> <button class ="btn" ng-click="editing = false"><b>Update</b></button>
+                        </div>
+
+                    </div> </span></li> </div>
+         </div>
         </div>
     </div>
 
-    <div id="leftcolumn">
-        <div ng-repeat="note in notesList">
+    <div id="leftColumn" ng-click ="editing = true">
+        <div ng-repeat="note in notesList" >
             <li>
                 <a>{{note.title}}</a> <script type="text/javascript">filltext(15)</script>
             </li>
 
     </div>
-    </div>
+
+
+
 
 
 </div>
+
+
 <script src="/javascripts/angular.js"></script>
 <script src="/javascripts/angular-cookies.js"></script>
 <script src="/javascripts/angular-route.js"></script>
