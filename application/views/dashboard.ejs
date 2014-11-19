@@ -12,63 +12,60 @@
     <div id="topSection"><div class="innerTube">
     <p>AirNote</p></div></div>
 
-    <div id="contentWrapper">
+    <div id="contentWrapper" >
         <div id="contentColumn">
 
             <div class="innerTube"><b>
 
                     <div class="content"> ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
-
+<!---Create note --->
+                    <form>
                     <span ng-hide="creating">
                     <button id="createNote" class="btn" ng-click="creating = true" ng-click ="editing = false"><b>New Note</b></button>
                     </span>
-                    <span ng-show="creating">
+                    <span ng-show="creating" ng-bind ="note in note">
                     <div class="createNoteTitle" >
                         <input type ="text" class="labelNewMessage" value="New Note" readonly>
-                        <input type="text" ng-model="name" class="createSubject" spellcheck="true" tabindex="1" placeholder="Title">
+                        <input type="text"  class="createSubject" spellcheck="true" tabindex="1" placeholder="Title">
                     </div>
-                        <div class="createNoteContent"><textarea></textarea>
-                        <button class="btn" ng-click="creating = false"><b>Save</b></button>
+                        <div class="createNoteContent"><textarea class="content" ng-model="content" ></textarea>
+                        <br><button class="btn-save" ng-click="creating = false"><b>Save</b></button>
+                            <button class ="btn-cancel" onfocus="clearNote(content.createSubject , content.content);" ng-click ="creating = false" ><b>Cancel</b></button>
                         </div>
-                        </span>
+                       </span>
+                    </form>
                     </div>
-
-
-
-
         </b> <script type="text/javascript">filltext(45)</script>
 
+ <!---Update note--->
+                <form>
             <div class="updateNote" ><li>
                     <span ng-show="editing">
                     <div class="updateNoteTitle"  >
                         <input type ="text" class="labelUpdateNote" value="Update Note" readonly>
+
                         <input type="text" ng-model="name" class="updateSubject" spellcheck="true" tabindex="1" placeholder="Title" ng-value ={{note.title}}>
                        {{note.title}} <script type="text/javascript">filltext(15)</script>
-                        <div class="createNoteContent"><textarea name ="content" ng-value = {{note.content}}></textarea><script type="text/javascript">filltext(15)</script>
-                           <br> <button class ="btn" ng-click="editing = false"><b>Update</b></button>
+                        <div class="updateNoteContent"><textarea name ="content" ng-value = {{note.content}}></textarea><script type="text/javascript">filltext(15)</script>
+                           <br> <button class ="btn-update" ng-click= "updateNote()" ><b>Update</b></button>
+                            <button class ="btn-cancel" ng-click= "editing = false" ><b>Cancel</b></button>
+                            <button class ="btn-delete" ng-click= "deleteNote()" ><b>Delete Note</b></button>
                         </div>
 
-                    </div> </span></li> </div>
+                    </div> </span></li> </div> </form>
          </div>
         </div>
     </div>
-
-    <div id="leftColumn" ng-click ="editing = true">
+<!---List notes in left column--->
+    <div id="leftColumn" ng-click ="editing = true" >
         <div ng-repeat="note in notesList" >
-            <li>
-                <a>{{note.title}}</a> <script type="text/javascript">filltext(15)</script>
-            </li>
 
+                <a class="noteTitle">{{note.title}}</a> <script type="text/javascript">filltext(15)</script>
     </div>
-
-
-
-
-
 </div>
 
-
+</div>
 <script src="/javascripts/angular.js"></script>
 <script src="/javascripts/angular-cookies.js"></script>
 <script src="/javascripts/angular-route.js"></script>
