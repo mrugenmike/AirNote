@@ -10,5 +10,7 @@ public interface NoteStorageService {
 
     Optional<NoteMetaInfo> fetchNoteInfoBy(String userId, String noteId);
 
+    NoteMetaInfo updateNoteInfo(NoteMetadata noteUploadResponse, String title, String userId, String noteId);
+
     void deleteNoteMetaInfo(String userId, String noteId);
 }

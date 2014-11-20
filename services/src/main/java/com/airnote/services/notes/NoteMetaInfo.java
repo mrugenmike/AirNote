@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import java.util.Date;
 
 public class NoteMetaInfo {
-    @JsonProperty private final String noteId = new ObjectId().toString();
+    @JsonProperty private String noteId = new ObjectId().toString();
     @JsonProperty private final NoteMetadata noteUploadResponse;
     @JsonProperty private final String title;
     @JsonProperty private final String userId;
@@ -66,10 +66,16 @@ public class NoteMetaInfo {
         noteUploadResponse.setThumb_exists((Boolean) info.get("thumbExists"));
         noteUploadResponse.setRev((String) info.get("rev"));
 
-        return new NoteMetaInfo(noteUploadResponse,info.get("title").toString(),info.get("userId").toString());
+        NoteMetaInfo noteMetaInfo = new NoteMetaInfo(noteUploadResponse, info.get("title").toString(), info.get("userId").toString());
+        noteMetaInfo.setNoteId(info.get("_id").toString());
+        return noteMetaInfo;
     }
 
     public String getFilePath() {
         return noteUploadResponse.getPath();
+    }
+
+    public void setNoteId(String id) {
+        this.noteId = id;
     }
 }

@@ -22,6 +22,8 @@ public class NotesService {
     @Autowired
     NoteStorageService storageService;
 
+    NoteMetaInfo noteInfoRecieved;
+
     public NoteMetaInfo createNote(NoteCreationRequest request, String accessToken) {
         final NoteMetadata noteUploadResponse = dropBoxClient.storeNote(accessToken, request.getTitle(), request.getContent());
         return storageService.storeNoteInfo(noteUploadResponse, request.getTitle(), request.getUserId());
@@ -40,6 +42,28 @@ public class NotesService {
                 return Optional.empty();
             }
         });
+    }
+
+    public  NoteMetaInfo updateNote(NoteUpdationRequest request, String accessToken) throws NoteNotFoundException {
+        Optional<NoteMetaInfo> noteInfoFetched = storageService.fetchNoteInfoBy(request.getUserId(), request.getNoteId());
+        if(noteInfoFetched.isPresent()) {
+            boolean titleHasChanged = !(noteInfoFetched.get().getTitle()).equals(request.getTitle());
+            if (titleHasChanged) {
+                try {
+                    dropBoxClient.deleteNote(noteInfoFetched.get().getFilePath(), accessToken);
+                } catch (NoteDeletionException e) {
+                    e.printStackTrace();
+                }
+                final NoteMetadata noteUploadResponse = dropBoxClient.storeNote(accessToken, request.getTitle(), request.getContent());
+                noteInfoRecieved = storageService.updateNoteInfo(noteUploadResponse, request.getTitle(), noteInfoFetched.get().getUserId(), noteInfoFetched.get().getNoteId());
+            } else {
+                NoteMetadata noteUpdateResponse = dropBoxClient.updateNote(noteInfoFetched.get().getFilePath(), accessToken, request.getContent());
+                noteInfoRecieved = storageService.updateNoteInfo(noteUpdateResponse, request.getTitle(), noteInfoFetched.get().getUserId(), noteInfoFetched.get().getNoteId());
+            }
+        } else {
+            throw new NoteNotFoundException();
+        }
+        return noteInfoRecieved;
     }
 
     public void deleteNote(String userId, String noteId, String accessToken) throws NoteDeletionException {

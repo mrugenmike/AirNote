@@ -1,9 +1,6 @@
 package com.airnote.services.notes;
 
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.QueryBuilder;
-import com.mongodb.WriteConcern;
+import com.mongodb.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +39,15 @@ public class NoteStorageServiceImpl implements NoteStorageService {
             return Optional.of(NoteMetaInfo.instance(noteMetaInfoOne));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public NoteMetaInfo updateNoteInfo(NoteMetadata noteUpdateResponse, String title, String userId, String noteId){
+        final NoteMetaInfo metaInfo = new NoteMetaInfo(noteUpdateResponse,title,userId);
+        metaInfo.setNoteId(noteId);
+        DBObject byNoteIdAndUserId = QueryBuilder.start("_id").is(noteId).and("userId").is(userId).get();
+        noteMetaInfos.update(byNoteIdAndUserId, metaInfo.asDBObject(), false, false, WriteConcern.ACKNOWLEDGED);
+        return metaInfo;
     }
 
     @Override

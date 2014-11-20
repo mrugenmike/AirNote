@@ -4,6 +4,11 @@ import com.airnote.services.notes.NoteMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
@@ -19,7 +24,7 @@ public class DropBoxClientImpl implements DropBoxClient {
     private RestTemplate restTemplate;
 
     @Value("${airnote.default.folder}")
-    private String tagetPath;
+    private String targetPath;
 
     private final String dropBoxContentEndpoint = "https://api-content.dropbox.com/1";
     private final String authorization = "Authorization";
@@ -31,7 +36,7 @@ public class DropBoxClientImpl implements DropBoxClient {
         final HttpHeaders headers = new HttpHeaders();
         headers.set(authorization,accessToken);
         final HttpEntity<String> stringHttpEntity = new HttpEntity<String>(content,headers);
-        String filePath = "https://api-content.dropbox.com/1/files_put/auto/"+tagetPath+"/"+title.replaceAll("\\s","");
+        String filePath = "https://api-content.dropbox.com/1/files_put/auto/"+targetPath+"/"+title.replaceAll("\\s","");
         ResponseEntity<NoteMetadata> noteUploadResponseResponseEntity = restTemplate.exchange(filePath, HttpMethod.POST,stringHttpEntity, NoteMetadata.class, uriVariables);
         return noteUploadResponseResponseEntity.getBody();
     }
@@ -46,6 +51,16 @@ public class DropBoxClientImpl implements DropBoxClient {
         } catch (RestClientException exception) {
             throw new FileContentException(exception.getMessage());
         }
+    }
+
+    @Override
+    public NoteMetadata updateNote(String filePath, String accessToken, String content){
+        final HttpHeaders headers = new HttpHeaders();
+        headers.set(authorization,accessToken);
+        final HttpEntity<String> stringHttpEntity = new HttpEntity<String>(content,headers);
+        UriComponentsBuilder uri = UriComponentsBuilder.newInstance().fromHttpUrl(dropBoxContentEndpoint+ "/files_put/auto/" + filePath.trim()).queryParam("locale", "en_uk").queryParam("overwrite",true).queryParam("autorename",true);
+        ResponseEntity<NoteMetadata> noteUpdateResponseEntity = restTemplate.exchange(uri.build().toUri(), HttpMethod.PUT, stringHttpEntity, NoteMetadata.class);
+        return noteUpdateResponseEntity.getBody();
     }
 
     @Override
