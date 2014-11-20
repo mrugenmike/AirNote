@@ -221,7 +221,8 @@ button#createNote {
     border-bottom: 2px solid black;
     border-top: 2px solid #3c3c3c;
     border-right: 4px solid #3c3c3c;
-
+    overflow-y: scroll;
+    height:700px;
 
 }
 #footer a{
