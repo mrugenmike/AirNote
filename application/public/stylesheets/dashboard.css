@@ -5,8 +5,9 @@ body{
     background-image: url('../images/brown.png');
 }
 
-b{font-size: 110%;
-   }
+b{
+    font-size: 110%;
+}
 
 #topSection{
     background: #EAEAEA;
@@ -16,6 +17,22 @@ b{font-size: 110%;
     background-image: url('../images/brown.png');
     border-bottom: 2px solid black;
 }
+
+#contentWrapper{
+    float: left;
+    width: 100%;
+    min-height: 100%;
+}
+
+#contentColumn{
+    margin-left: 200px; /*Set left margin to LeftColumnWidth*/
+height: 1200px;
+    min-height: 100%;
+    background-image: url('../images/brown.png');
+    border-bottom: 2px solid black;
+    border-top: 2px solid #3c3c3c;
+}
+
 
 #topSection h1{
     margin: 0;
@@ -33,22 +50,6 @@ p { margin: 0;
 }
 
 
-#contentWrapper{
-    float: left;
-    width: 100%;
-    min-height: 100%;
-}
-
-#contentColumn{
-    margin-left: 200px; /*Set left margin to LeftColumnWidth*/
-    height: 1200px;
-    min-height: 100%;
-    background-image: url('../images/brown.png');
-    border-bottom: 2px solid black;
-    border-top: 2px solid #3c3c3c;
-
-
-}
 
 #b2{
     margin-left: 350px;
@@ -191,7 +192,7 @@ textarea {
 button#createNote {
 
     background-color: whitesmoke;
-    background-image: url('/images/plus.png') ;
+    background-image: url('../images/plus.png') ;
     background-size: 20%;
     background-repeat: no-repeat;
     background-position: left center;
@@ -222,8 +223,6 @@ button#createNote {
     border-top: 2px solid #3c3c3c;
     border-right: 4px solid #3c3c3c;
     overflow-y: scroll;
-    height:700px;
-
 }
 #footer a{
     color: #FFFF80;
@@ -234,6 +233,12 @@ button#createNote {
     margin-top: 0;
     min-height: 100%;
 }
+
+.content{
+    z-index:10;
+    position:relative;
+}
+
 a{
     height: 50px;
     width: 60px;
@@ -248,11 +253,9 @@ a{
 }
 
 .noteTitle{
-
     font-size: 13px;
     margin-left: 30px;
     text-align: left;
-
 }
 
 
@@ -261,7 +264,6 @@ h2 {
     text-align: left;
     color: whitesmoke;
     position: absolute;
-    font: 10 10px/0.5 'Pacifico', Helvetica, sans-serif;
 }
 
 
