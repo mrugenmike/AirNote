@@ -74,40 +74,36 @@
             <div class="container-default">
                 <div class="row">
                     <div class="col-md-4">
-                        <div ng-repeat="note in notesList" >
+                        <div ng-repeat="note in notesList"  >
                         <div class="panel panel-success" >
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                        <a>{{note.title}}</a>
+                            <div class="panel-heading" ng-click="$parent.editing = true">
+                                <h3 class="panel-title" >
+                                        <a >{{note.title}}</a>
                                     </h3>
                             </div>
                         </div>
                         </div>
                     </div>
 
-
-
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
                                 <form>
 
-                                    <li class="col-md-4" ng-hide="creating">
+                                    <li class="col-md-4" ng-hide="creating" >
 
-                                    <button  class="btn btn-primary btn-md" ng-click="creating = true" ng-click ="editing = false" style="margin-right : 100px"><b>
+                                    <button  class="btn btn-default" ng-click="creating = true" ng-click ="editing = false" style="margin-right : 100px"><b>
                                             <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                                     </li>
 
-                                    <li class="col-md-4">
-                                            <button  class="btn btn-primary btn-md" ><b>
-                                            <span class="glyphicon glyphicon-trash"></span> Delete</b></button></li>
-                                    <li class="col-md-4"><button  class="btn btn-primary btn-md" style="margin-right : 10px"><b><span class="glyphicon glyphicon-edit"></span> Edit</b></button></li>
+
+
                                 </form>
 
 
                             </ul>
                             <div class="clearfix"></div>
 
-                            <span ng-show="creating">
+                            <span ng-show="creating" >
                                  <div class="form-group">
                                      <label for="exampleInputEmail1">Title</label>
                                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
@@ -117,7 +113,25 @@
                                     <textarea class="form-control" rows="6"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default">Save</button>
+                                <button type="submit" class="btn btn-default" >
+                                        <span class="glyphicon glyphicon-trash"></span> Delete</button>
                                     <button type="submit" class="btn btn-default" ng-click="creating=false">Cancel</button>
+
+                            </span>
+
+                            <span ng-show="editing" >
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Title</label>
+                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputPassword1">Note</label>
+                                     <textarea class="form-control" rows="6"></textarea>
+                                 </div>
+                                    <button type="submit" class="btn btn-default">Save</button>
+                                <button type="submit" class="btn btn-default" >
+                                    <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                    <button type="submit" class="btn btn-default" ng-click="editing=false">Cancel</button>
                             </span>
                         </div>
 
