@@ -78,7 +78,7 @@
                         <div class="panel panel-success" >
                             <div class="panel-heading" ng-click="$parent.editing = true" >
                                 <h3 class="panel-title" >
-                                    <a class="noteTitle">{{noteDecorator.note.title}}</a>
+                                    <a class="noteTitle" >{{noteDecorator.note.title}}</a>
                                     </h3>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
 
                                     <li class="col-md-4" ng-hide="creating" >
 
-                                    <button  class="btn btn-default" ng-click="creating = true" ng-click ="editing = false" style="margin-right : 100px"><b>
+                                    <button class="btn btn-default" ng-click="creating = true"  ng-click ="editing = false" ng-disabled ="editing" style="margin-right : 100px"><b>
                                             <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                                     </li>
 
@@ -106,16 +106,16 @@
                             <span ng-show="creating" >
                                  <div class="form-group">
                                      <label for="exampleInputEmail1">Title</label>
-                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
+                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title" ng-model="newNoteTitle">
                                  </div>
                                  <div class="form-group">
                                     <label for="exampleInputPassword1">Note</label>
-                                    <textarea class="form-control" rows="6"></textarea>
+                                    <textarea ng-model="newNoteContent" class="form-control" rows="6"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default">Save</button>
                                 <button type="submit" class="btn btn-default" >
                                         <span class="glyphicon glyphicon-trash"></span> Delete</button>
-                                    <button type="submit" class="btn btn-default" ng-click="creating=false">Cancel</button>
+                                    <button type="submit" class="btn btn-default" ng-click="clear(); creating=false" ng-click="creating=false" >Cancel</button>
 
                             </span>
 
@@ -126,12 +126,12 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="exampleInputPassword1">Note</label>
-                                     <textarea class="form-control" rows="6"></textarea>
+                                     <textarea id="updatenotecontent" class="form-control" rows="6"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default">Save</button>
                                 <button type="submit" class="btn btn-default" >
                                     <span class="glyphicon glyphicon-trash"></span> Delete</button>
-                                    <button type="submit" class="btn btn-default" ng-click="editing=false">Cancel</button>
+                                    <button type="submit" class="btn btn-default" ng-click="editing=false" >Cancel</button>
                             </span>
                         </div>
 
