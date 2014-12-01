@@ -58,6 +58,11 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         };
     }
 
+
+    $scope.clear = function() {
+        $scope.newNoteTitle = "";
+        $scope.newNoteContent = "";};
+
     notesAPIservice.fetchNote().success(function (response) {
         $scope.note = response;
     });
