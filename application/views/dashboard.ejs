@@ -76,7 +76,7 @@
                     <div class="col-md-4">
                         <div ng-repeat="noteDecorator in noteDecoratorList" ng-click="noteDecorator.setCurrentNote()"  >
                         <div class="panel panel-success" >
-                            <div class="panel-heading" ng-click="$parent.editing = true" >
+                            <div class="panel-heading" ng-click="$parent.editing = true;$parent.creating = false" >
                                 <h3 class="panel-title" >
                                     <a class="noteTitle" >{{noteDecorator.note.title}}</a>
                                     </h3>
@@ -91,7 +91,7 @@
 
                                     <li class="col-md-4" ng-hide="creating" >
 
-                                    <button class="btn btn-default" ng-click="creating = true"  ng-click ="editing = false" ng-disabled ="editing" style="margin-right : 100px"><b>
+                                    <button class="btn btn-default" ng-click="creating = true; editing = false" ng-disabled ="editing" style="margin-right : 100px"><b>
                                             <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                                     </li>
 
