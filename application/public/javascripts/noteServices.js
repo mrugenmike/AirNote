@@ -3,58 +3,58 @@ angular.module('AirNoteApp.noteServices', []).
 
         var notesAPI = {};
 
-        notesAPI.getUserInfo = function() {
+        notesAPI.getUserInfo = function(accessToken) {
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
+                headers: {'Authorization': 'Bearer '+ accessToken},
                 url: 'http://localhost:8080/api/users'
             });
         }
 
-        notesAPI.listNotes = function() {
+        notesAPI.listNotes = function(accessToken,userId) {
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
-                url: 'http://localhost:8080/api/notes/351441185'
+                headers: {'Authorization': 'Bearer '+ accessToken},
+                url: 'http://localhost:8080/api/notes/' + userId
             });
         }
 
-        notesAPI.createNote = function(title, contents){
+        notesAPI.createNote = function(title, contents, accessToken, userId){
             console.log(title);
             console.log(contents);
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
+                headers: {'Authorization': 'Bearer '+ accessToken},
                 url: 'http://localhost:8080/api/notes',
                 data: {"title": title,
                     "content": contents,
-                    "userId": "351441185"
+                    "userId": userId
                 },
                 method: 'POST'
             });
         }
 
-        notesAPI.fetchNote = function(){
+        notesAPI.fetchNote = function(accessToken, userId){
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
-                url: 'http://localhost:8080/api/notes/351441185/54562835a8262eb8960d7f04'
+                headers: {'Authorization': 'Bearer '+ accessToken},
+                url: 'http://localhost:8080/api/notes/'+ userId +'/54562835a8262eb8960d7f04'
                 });
         }
 
-        notesAPI.updateNote = function(title, contents, noteId){
+        notesAPI.updateNote = function(title, contents, noteId, accessToken, userId){
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
+                headers: {'Authorization': 'Bearer '+ accessToken},
                 url: 'http://localhost:8080/api/notes',
                 data: {"title": title,
                     "content": contents,
-                    "userId": "351441185",
+                    "userId": userId,
                     "noteId": "547a7c0c0364648b83bc8170"
                 },
                 method: 'PUT'
             })
         }
 
-        notesAPI.deleteNote = function(){
+        notesAPI.deleteNote = function(accessToken, userId){
             return $http({
-                headers: {'Authorization': 'Bearer L5WpAIC9mn0AAAAAAAAAkXl4dATdr26BLATTHl-HSg9Ezn1EXD5K6-_STgilxSv3'},
-                url: 'http://localhost:8080/api/notes/351441185/54562835a8262eb8960d7f04',
+                headers: {'Authorization': 'Bearer '+accessToken},
+                url: 'http://localhost:8080/api/notes/'+userId+'/54562835a8262eb8960d7f04',
                 method: 'DELETE'
             })
         }

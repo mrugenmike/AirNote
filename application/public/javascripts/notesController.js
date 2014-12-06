@@ -8,7 +8,9 @@ controller.config(function ($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-controller.controller('notesController', function ($scope, notesAPIservice, $cookieStore) {
+controller.controller('notesController', function ($scope, notesAPIservice, $cookies, $cookieStore) {
+    var userId = $cookies.uid;
+    var accessToken = $cookies.accessToken;
     $scope.nameFilter = null;
     $scope.notesList = [];
     $scope.username = null;
@@ -21,20 +23,20 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         var title = document.getElementById("createTitle").value;
         var contents = document.getElementById("createContent").value;
 
-        notesAPIservice.createNote(title, contents).success(function (response) {
+        notesAPIservice.createNote(title, contents, accessToken, userId).success(function (response) {
             $scope.noteId = response.noteId;
             console.log('note id is' + $scope.noteId);
         });
     }
 
-        notesAPIservice.getUserInfo().success(function (response) {
+        notesAPIservice.getUserInfo(accessToken).success(function (response) {
         $scope.username = response.display_name
 
     }).error(function (data, status, headers, config) {
         $scope.username = "oops we had an error!"
     });
 
-    notesAPIservice.listNotes().success(function (response) {
+    notesAPIservice.listNotes(accessToken, userId).success(function (response) {
         $scope.notesList = response;
         var notesDecorators = [];
         var myNote = null;
@@ -63,15 +65,15 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         $scope.newNoteTitle = "";
         $scope.newNoteContent = "";};
 
-    notesAPIservice.fetchNote().success(function (response) {
+    notesAPIservice.fetchNote(accessToken, userId).success(function (response) {
         $scope.note = response;
     });
 
-    notesAPIservice.updateNote().success(function (response) {
+    notesAPIservice.updateNote(accessToken, userId).success(function (response) {
         $scope.note = response;
     });
 
-    notesAPIservice.deleteNote().success(function (response) {
+    notesAPIservice.deleteNote(accessToken, userId).success(function (response) {
 
     });
 });
