@@ -94,9 +94,6 @@
                                     <button class="btn btn-default" ng-click="creating = true; editing = false" ng-disabled ="editing" style="margin-right : 100px"><b>
                                             <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                                     </li>
-
-
-
                                 </form>
 
 
@@ -106,13 +103,13 @@
                             <span ng-show="creating" >
                                  <div class="form-group">
                                      <label for="exampleInputEmail1">Title</label>
-                                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title" ng-model="newNoteTitle">
+                                     <input type="email" class="form-control" id="createTitle" placeholder="Enter title" ng-model="newNoteTitle">
                                  </div>
                                  <div class="form-group">
                                     <label for="exampleInputPassword1">Note</label>
-                                    <textarea ng-model="newNoteContent" class="form-control" rows="6"></textarea>
+                                    <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"></textarea>
                                  </div>
-                                    <button type="submit" class="btn btn-default">Save</button>
+                                    <button type="submit" class="btn btn-default" ng-click="create()">Save</button>
                                 <button type="submit" class="btn btn-default" >
                                         <span class="glyphicon glyphicon-trash"></span> Delete</button>
                                     <button type="submit" class="btn btn-default" ng-click="clear(); creating=false" ng-click="creating=false" >Cancel</button>

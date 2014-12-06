@@ -16,6 +16,7 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
     $scope.username = null;
     $scope.noteId = null;
     $scope.note = null;
+    $scope.currentNoteId=null;
 
     $scope.create = function() {
         //$scope.msg = 'clicked';
