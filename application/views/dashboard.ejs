@@ -109,7 +109,7 @@
                                     <label for="exampleInputPassword1">Note</label>
                                     <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"></textarea>
                                  </div>
-                                    <button type="submit" class="btn btn-default" ng-click="create()">Save</button>
+                                    <button type="submit" class="btn btn-default" ng-click="create() ; creating= false">Save</button>
                                 <button type="submit" class="btn btn-default" >
                                         <span class="glyphicon glyphicon-trash"></span> Delete</button>
                                     <button type="submit" class="btn btn-default" ng-click="clear(); creating=false" ng-click="creating=false" >Cancel</button>
@@ -123,7 +123,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="exampleInputPassword1">Note</label>
-                                     <textarea id="updatenotecontent" class="form-control" rows="6"></textarea>
+                                     <textarea id="updatenotecontent" class="form-control" rows="6" value="{{currentNoteContent}}"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default">Save</button>
                                 <button type="submit" class="btn btn-default" >

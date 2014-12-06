@@ -31,10 +31,11 @@ angular.module('AirNoteApp.noteServices', []).
             });
         }
 
-        notesAPI.fetchNote = function(accessToken, userId){
+        notesAPI.fetchNote = function(accessToken, userId, noteId){
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes/'+ userId +'/54562835a8262eb8960d7f04'
+                url: 'http://localhost:8080/api/notes/'+ userId +'/'+noteId
+                //url: 'http://localhost:8080/api/notes/'+ userId +'/54562835a8262eb8960d7f04'
                 });
         }
 

@@ -55,9 +55,14 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
 
     function DecoratedNote(note) {
         this.note = note;
+        this.noteId = note.noteId;
         this.setCurrentNote = function () {
             console.log("Click done at" + note.title);
             $scope.clickedNoteTitle = note.title;
+             notesAPIservice.fetchNote(accessToken, userId, this.noteId).success(function (response) {
+                //$scope.note = response;
+                 $scope.currentNoteContent = response.content;
+            });
         };
     }
 
@@ -66,9 +71,7 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         $scope.newNoteTitle = "";
         $scope.newNoteContent = "";};
 
-    notesAPIservice.fetchNote(accessToken, userId).success(function (response) {
-        $scope.note = response;
-    });
+
 
     notesAPIservice.updateNote(accessToken, userId).success(function (response) {
         $scope.note = response;
