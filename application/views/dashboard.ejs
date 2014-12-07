@@ -99,10 +99,9 @@
                                     <label for="exampleInputPassword1">Note</label>
                                     <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"></textarea>
                                  </div>
-                                    <button type="submit" class="btn btn-default" ng-click="create() ; creating= false">Save</button>
-                                <button type="submit" class="btn btn-default" >
-                                        <span class="glyphicon glyphicon-trash"></span> Delete</button>
-                                    <button type="submit" class="btn btn-default" ng-click="clear(); creating=false" ng-click="creating=false" >Cancel</button>
+                                    <button type="submit" class="btn btn-default" ng-click="create() ;reload(); creating= false">Save</button>
+
+                                    <button type="submit" class="btn btn-default" ng-click="clear();reload(); creating=false" ng-click="creating=false" >Cancel</button>
 
                             </span>
 
@@ -115,10 +114,10 @@
                                      <label for="exampleInputPassword1">Note</label>
                                      <textarea id="editContent" class="form-control" rows="6" value="{{currentNoteContent}}" ng-model="updateContent"></textarea>
                                  </div>
-                                    <button type="submit" class="btn btn-default" ng-click="update(); editing= false">Save</button>
-                                <button type="submit" class="btn btn-default" ng-click="delete(); editing=false" >
+                                    <button type="submit" class="btn btn-default" ng-click="update();reload(); editing= false">Save</button>
+                                <button type="submit" class="btn btn-default" ng-click="delete();reload(); editing=false" >
                                     <span class="glyphicon glyphicon-trash"></span> Delete</button>
-                                    <button type="submit" class="btn btn-default" ng-click=" editing=false" >Cancel</button>
+                                    <button type="submit" class="btn btn-default" ng-click=" reload(); editing=false" >Cancel</button>
                             </span>
                         </div>
 

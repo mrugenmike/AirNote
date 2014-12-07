@@ -82,7 +82,9 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
             });
         };
     }
-
+$scope.reload = function(){
+    location.reload();
+}
 
     $scope.clear = function() {
         $scope.newNoteTitle = "";
