@@ -55,6 +55,14 @@ router.get('/dashboard', function(req, res) {
     });
    });
 
+router.get('/logout', function(req,res){
+    console.log('in logout');
+    res.clearCookie('accessToken',{path:'/'});
+    res.clearCookie('userName',{path:'/'});
+    res.clearCookie('uid',{path:'/'});
+    res.redirect("/");
+})
+
 router.get('/auth',function(req,res){
   client.authenticateUser(req,res);
 })
