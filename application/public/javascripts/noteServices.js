@@ -46,7 +46,8 @@ angular.module('AirNoteApp.noteServices', []).
                 data: {"title": title,
                     "content": contents,
                     "userId": userId,
-                    "noteId": "547a7c0c0364648b83bc8170"
+                    "noteId": noteId
+                    //"noteId": "547a7c0c0364648b83bc8170"
                 },
                 method: 'PUT'
             })

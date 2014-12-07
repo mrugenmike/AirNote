@@ -30,6 +30,15 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         });
     }
 
+    $scope.update = function() {
+        console.log(' update clicked');
+        var title = document.getElementById("updateTitle").value;
+        var contents = document.getElementById("editContent").value;
+        notesAPIservice.updateNote(title,contents,$scope.currentNoteId,accessToken,userId).success(function(response){
+          //$scope.noteId = response.noteId;
+        });
+    }
+
     $scope.delete = function(){
         console.log('delete clicked!! for '  + $scope.currentNoteId);
         notesAPIservice.deleteNote(accessToken, userId, $scope.currentNoteId).success(function (response) {
@@ -79,11 +88,5 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         $scope.newNoteTitle = "";
         $scope.newNoteContent = "";};
 
-
-
-    notesAPIservice.updateNote(accessToken, userId).success(function (response) {
-        $scope.note = response;
     });
-
-});
 
