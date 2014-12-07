@@ -116,7 +116,7 @@
                                      <textarea id="updatenotecontent" class="form-control" rows="6" value="{{currentNoteContent}}"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default">Save</button>
-                                <button type="submit" class="btn btn-default" >
+                                <button type="submit" class="btn btn-default" ng-click="delete(); editing=false" >
                                     <span class="glyphicon glyphicon-trash"></span> Delete</button>
                                     <button type="submit" class="btn btn-default" ng-click="editing=false" >Cancel</button>
                             </span>

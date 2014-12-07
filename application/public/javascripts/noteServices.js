@@ -52,10 +52,12 @@ angular.module('AirNoteApp.noteServices', []).
             })
         }
 
-        notesAPI.deleteNote = function(accessToken, userId){
+        notesAPI.deleteNote = function(accessToken, userId, noteId){
+            console.log('note id' + noteId);
             return $http({
                 headers: {'Authorization': 'Bearer '+accessToken},
-                url: 'http://localhost:8080/api/notes/'+userId+'/54562835a8262eb8960d7f04',
+                url: 'http://localhost:8080/api/notes/'+userId+'/'+ noteId,
+                //url: 'http://localhost:8080/api/notes/'+userId+'/54562835a8262eb8960d7f04',
                 method: 'DELETE'
             })
         }

@@ -30,6 +30,13 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         });
     }
 
+    $scope.delete = function(){
+        console.log('delete clicked!! for '  + $scope.currentNoteId);
+        notesAPIservice.deleteNote(accessToken, userId, $scope.currentNoteId).success(function (response) {
+            console.log('Deleted');
+        });
+    }
+
         notesAPIservice.getUserInfo(accessToken).success(function (response) {
         $scope.username = response.display_name
 
@@ -62,6 +69,7 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
              notesAPIservice.fetchNote(accessToken, userId, this.noteId).success(function (response) {
                 //$scope.note = response;
                  $scope.currentNoteContent = response.content;
+                 $scope.currentNoteId = response.noteId;
             });
         };
     }
@@ -77,8 +85,5 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         $scope.note = response;
     });
 
-    notesAPIservice.deleteNote(accessToken, userId).success(function (response) {
-
-    });
 });
 
