@@ -10,6 +10,28 @@
                 <meta name="viewport" content="width=540px" />
                 <link href="https://d340syr2dan8gj.cloudfront.net/assets/application-98839020055f79faa4a33350f23d1f72.css" media="screen" rel="stylesheet" />
                 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+                <!-- date picker -->
+
+                <link type="text/css" href="css/bootstrap.min.css" />
+                <link type="text/css" href="css/bootstrap-timepicker.min.css" />
+
+                <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+                <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+                <script>
+                    $(function() {
+                        $( "#datepicker" ).datepicker();
+                    });
+                </script>
+
+
+                <!--Time picker -->
+                <script type="text/javascript" src="js/bootstrap-2.2.2.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap-2.2.2.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+            </head>
+
             </head>
             <body class="blueprint fixed-navbar" ng-app="AirNoteApp" ng-controller="notesController">
                 <div id="" class="navbar navbar-default navbar-px" role="navigation">
@@ -51,36 +73,80 @@
             <div class="container-default">
                 <div class="row">
                     <div class="col-md-4">
-                        <div ng-repeat="noteDecorator in noteDecoratorList" ng-click="noteDecorator.setCurrentNote()"  >
-                        <div class="panel panel-success" >
-                            <div class="panel-heading" ng-click="$parent.editing = true;$parent.creating = false" >
-                                <h3 class="panel-title" >
-                                    <a class="noteTitle" >{{noteDecorator.note.title}}</a>
-                                    </h3>
-                            </div>
-                        </div>
-                        </div>
-                        <ul class="pager">
-                            <li class="previous"><a href ="" ng-click="prevClicked();">&larr; Older</a></li>
-                            <li class="next"><a href="#" ng-click="nextClicked();">Newer &rarr;</a></li>
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active"><a href="#notes" data-toggle="tab" class="glyphicon glyphicon-book"> Notes</a></li>
+                            <li><a href="#reminder" data-toggle="tab" class="glyphicon glyphicon-calendar"> Reminder</a></li>
                         </ul>
+
+                        <!--notes data-->
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="notes">
+                                    <p>
+                                <div ng-repeat="noteDecorator in noteDecoratorList" ng-click="noteDecorator.setCurrentNote()"  >
+                                    <div class="panel panel-success" >
+                                        <div class="panel-heading" ng-click="$parent.editing = true;$parent.creating = false" >
+                                            <h3 class="panel-title" >
+                                                <a class="noteTitle" >{{noteDecorator.note.title}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- prev next-->
+                                <ul class="pager">
+                                    <li class="previous"><a href ="" ng-click="prevClicked();">&larr; Older</a></li>
+                                    <li class="next"><a href="#" ng-click="nextClicked();">Newer &rarr;</a></li>
+                                </ul>
+                                    </p>
+                            </div>
+                            <div class="tab-pane fade" id="reminder">
+
+                                <p>
+                                <div class="panel panel-success" >
+                                    <div class="panel-heading" ng-click="$parent.editing = true;$parent.creating = false" >
+                                        <h3 class="panel-title" >
+                                            <a class="noteTitle" >Message1</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                </p>
+
+                                <ul class="pager">
+                                    <li class="previous"><a href ="" ng-click="prevClicked();">&larr; Older</a></li>
+                                    <li class="next"><a href="#" ng-click="nextClicked();">Newer &rarr;</a></li>
+                                </ul>
+
+                            </div>
                     </div>
+                </div>
 
                         <div class="col-md-8">
+                            <!-- New note tab-->
                             <ul class="nav navbar-nav">
                                 <form id = "createForm">
 
-                                    <li class="col-md-4" ng-hide="creating" >
+                                    <li class="col-md-4" ng-hide="creating" ng-hide="creatingReminder">
 
-                                    <button class="btn btn-default" ng-click="creating = true; editing = false" ng-disabled ="editing" style="margin-right : 100px"><b>
+                                    <button class="btn btn-default" ng-click="creating = true; editing = false; creatingReminder=false" ng-disabled ="editing" style="margin-right : 100px"><b>
                                             <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                                     </li>
                                 </form>
-
-
                             </ul>
+
+                            <!-- New reminder tab-->
+                            <ul class="nav navbar-nav">
+                                <form id = "createForm">
+
+                                    <li class="col-md-4" ng-hide="creatingReminder" ng-hide="creating" >
+
+                                        <button class="btn btn-default" ng-click="creatingReminder = true; editingReminder = false; creating=false; editing = false" ng-disabled ="editingReminder; creating; editing" style="margin-right : 100px"><b>
+                                                <span class="glyphicon glyphicon-bell"></span> Set new reminder</b></button>
+                                    </li>
+                                </form>
+                            </ul>
+
                             <div class="clearfix"></div>
 
+                            <!-- Notes-->
                             <span ng-show="creating" >
                                  <div class="form-group">
                                      <label for="title">Title</label>
@@ -113,8 +179,75 @@
                                     <span class="glyphicon glyphicon-trash"></span> Delete</button>
                                     <button type="submit" class="btn btn-default" ng-click=" reload(); editing=false" >Cancel</button>
                             </span>
-                        </div>
+                            <!-- Notes end-->
 
+                            <!--Reminder start -->
+
+                             <span ng-show="creatingReminder" >
+
+                                 <div class="form-group">
+                                     <h1></h1>
+                                     <p>Date: <input type="text" id="datepicker"></p>
+                                     </div>
+                                 <div class="form-group">
+                                     <div class="input-append bootstrap-timepicker">
+                                        <p> Time:
+                                         <input id="timepicker1" type="text" class="input-small">
+                                         <span class="add-on"><i class="icon-time"></i></span>
+                                        </p>
+                                     </div>
+
+                                     <script type="text/javascript">
+                                         $('#timepicker1').timepicker();
+                                     </script>
+                                    </div>
+
+                                     <!--Content-->
+                                     <div class="form-group">
+                                         <p for="reminderContent">Note: </p>
+                                         <textarea id="editContent" class="form-control" rows="6" value="{{currentReminder}}" ng-model="updateContent"></textarea>
+                                     </div> 
+
+                                    <button type="submit" class="btn btn-default" ng-click="create();">Save</button>
+
+                                    <button type="submit" class="btn btn-default" ng-click="clear();reload(); creating=false" ng-click="creating=false" >Cancel</button>
+                                    <label for="errorMessage" style="color: red; font-style: italic;"> {{ errorMessage }} </label>
+
+
+                            </span>
+
+                            <span ng-show="editingReminder" >
+                                  <div class="form-group">
+                                      <h1></h1>
+                                      <p>Date: <input type="text" id="datepicker"></p>
+                                  </div>
+                                 <div class="form-group">
+                                     <div class="input-append bootstrap-timepicker">
+                                         <p> Time:
+                                             <input id="timepicker1" type="text" class="input-small">
+                                             <span class="add-on"><i class="icon-time"></i></span>
+                                         </p>
+                                     </div>
+
+                                     <script type="text/javascript">
+                                         $('#timepicker1').timepicker();
+                                     </script>
+                                 </div>
+
+                                     <!--Content-->
+                                     <div class="form-group">
+                                         <p for="reminderContent">Note: </p>
+                                         <textarea id="editContent" class="form-control" rows="6" value="{{currentReminder}}" ng-model="updateContent"></textarea>
+                                     </div> 
+
+                                    <button type="submit" class="btn btn-default" ng-click="create();">Save</button>
+
+                                    <button type="submit" class="btn btn-default" ng-click="clear();reload(); creating=false" ng-click="creating=false" >Cancel</button>
+                                    <label for="errorMessage" style="color: red; font-style: italic;"> {{ errorMessage }} </label>
+
+                            <!--Reminder end-->
+
+                        </div>
                 </div>
 
             </div>
