@@ -1,8 +1,11 @@
 package com.airnote.services;
 
+import com.airnote.services.reminder.ReminderEmailImpl;
+import com.airnote.services.reminder.ReminderEmailService;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.sendgrid.SendGrid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -45,9 +48,14 @@ public class NoteAppConfiguration {
         return getMongoClient().getDB(mongoDatabase).getCollection("noteMetaInfo");
     }
 
+
     @Bean(name={"reminderMetaInfo"})
     DBCollection getReminderCollection() throws UnknownHostException {
         return getMongoClient().getDB(mongoDatabase).getCollection("reminderMetaInfo");
     }
+
+    @Bean
+    SendGrid sendGridEmail() { return new SendGrid("mrugen.deshmukh@sjsu.edu" ,"airnote@123");}
+
 }
 
