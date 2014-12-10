@@ -17,17 +17,97 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
     $scope.noteId = null;
     $scope.note = null;
     $scope.currentNoteId=null;
+    $scope.skipCounter=0;
+    $scope.totalCount = 0;
 
     $scope.create = function() {
         //$scope.msg = 'clicked';
-        console.log('Clicked!!');
         var title = document.getElementById("createTitle").value;
         var contents = document.getElementById("createContent").value;
+        console.log('Clicked!!');
 
-        notesAPIservice.createNote(title, contents, accessToken, userId).success(function (response) {
-            $scope.noteId = response.noteId;
-            console.log('note id is' + $scope.noteId);
-        });
+        if(title=="" && contents=="")
+        {
+            $scope.errorMessage = "Please enter note title and contents!";
+        }
+        else if(title==""){
+            $scope.errorMessage = "Note title can not be blank!";
+        }
+        else if(contents=="")
+        {
+            $scope.errorMessage = "Note content can not be blank!";
+        }
+        else
+        {
+            notesAPIservice.createNote(title, contents, accessToken, userId).success(function (response) {
+                $scope.noteId = response.noteId;
+                console.log('note id is' + $scope.noteId);
+            });
+
+            location.reload();
+        }
+               //var title = document.getElementById("createTitle").value;
+        //var contents = document.getElementById("createContent").value;
+    }
+
+    $scope.prevClicked = function(){
+        console.log('prev was clicked!');
+        if($scope.skipCounter < 10 )
+        {
+            //document.getElementById("createTitle");
+            console.log("Prev click disable!");
+        }
+        else
+        {
+            $scope.skipCounter = $scope.skipCounter - 10;
+            notesAPIservice.listNotes(accessToken, userId, $scope.skipCounter).success(function (response) {
+                $scope.notesList = response.notes;
+                $scope.totalCount = response.totalNotes;
+                var notesDecorators = [];
+                var myNote = null;
+                $scope.notesList.forEach(function (note) {
+                    console.log(note.title);
+                    myNote = new DecoratedNote(note);
+                    notesDecorators.push(myNote);
+                });
+                console.log(notesDecorators.length);
+                $scope.noteDecoratorList = notesDecorators;
+            }).error(function (data) {
+                $scope.notesList = []
+            });
+        }
+
+    }
+
+    $scope.nextClicked =  function(){
+        console.log('next was clicked!!');
+        console.log("total count is"+$scope.totalCount);
+        console.log("total skip count is"+$scope.skipCounter);
+        if(($scope.totalCount - $scope.skipCounter) < 10){
+            console.log("Next click disable!");
+
+        }
+        else
+        {
+            $scope.skipCounter = $scope.skipCounter + 10;
+            notesAPIservice.listNotes(accessToken, userId, $scope.skipCounter).success(function (response) {
+                $scope.notesList = response.notes;
+                $scope.totalCount = response.totalNotes;
+                var notesDecorators = [];
+                var myNote = null;
+                $scope.notesList.forEach(function (note) {
+                    console.log(note.title);
+                    myNote = new DecoratedNote(note);
+                    notesDecorators.push(myNote);
+                });
+                console.log(notesDecorators.length);
+                $scope.noteDecoratorList = notesDecorators;
+            }).error(function (data) {
+                $scope.notesList = []
+            });
+        }
+
+
     }
 
     $scope.update = function() {
@@ -53,8 +133,9 @@ controller.controller('notesController', function ($scope, notesAPIservice, $coo
         $scope.username = "oops we had an error!"
     });
 
-    notesAPIservice.listNotes(accessToken, userId).success(function (response) {
-        $scope.notesList = response;
+    notesAPIservice.listNotes(accessToken, userId, 0).success(function (response) {
+        $scope.notesList = response.notes;
+        $scope.totalCount = response.totalNotes;
         var notesDecorators = [];
         var myNote = null;
         $scope.notesList.forEach(function (note) {
@@ -89,6 +170,10 @@ $scope.reload = function(){
     $scope.clear = function() {
         $scope.newNoteTitle = "";
         $scope.newNoteContent = "";};
+
+
+
+
 
     });
 

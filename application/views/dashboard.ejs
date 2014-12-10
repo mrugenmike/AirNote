@@ -6,13 +6,10 @@
                 <title>AirNote</title>
                 <meta content="authenticity_token" name="csrf-param" />
                 <meta content="IGgHSG96k4NUf9Gd3AZl4wK1mKh31YDpaZILH9RovPA=" name="csrf-token" />
-
                 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
                 <meta name="viewport" content="width=540px" />
                 <link href="https://d340syr2dan8gj.cloudfront.net/assets/application-98839020055f79faa4a33350f23d1f72.css" media="screen" rel="stylesheet" />
                 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-              <!--  <link rel='stylesheet' href='/stylesheets/dashboard.css' /> -->
-
             </head>
             <body class="blueprint fixed-navbar" ng-app="AirNoteApp" ng-controller="notesController">
                 <div id="" class="navbar navbar-default navbar-px" role="navigation">
@@ -26,20 +23,10 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/users/logout">Log out</a></li>
                                 </ul>
-                            </li></ul>                ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-
-
-
-                        <ul class="nav navbar-nav navbar-right">
-
-
-                            <!-- <li class=""><a href="http://blog.pixelapse.com">Blog</a></li> -->
-                            <!-- <li class="navbar-divider"></li> -->
-                        </ul>
+                            </li></ul>
 
                     </div>
                 </div>
-
 
                 <div id="px-open-header" class="background-gradient-4 px-profile fixed-header jumbotron">
                     <canvas id="animated-canvas"></canvas>
@@ -73,11 +60,15 @@
                             </div>
                         </div>
                         </div>
+                        <ul class="pager">
+                            <li class="previous"><a href ="" ng-click="prevClicked();">&larr; Older</a></li>
+                            <li class="next"><a href="#" ng-click="nextClicked();">Newer &rarr;</a></li>
+                        </ul>
                     </div>
 
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
-                                <form>
+                                <form id = "createForm">
 
                                     <li class="col-md-4" ng-hide="creating" >
 
@@ -92,16 +83,19 @@
 
                             <span ng-show="creating" >
                                  <div class="form-group">
-                                     <label for="exampleInputEmail1">Title</label>
-                                     <input type="email" class="form-control" id="createTitle" placeholder="Enter title" ng-model="newNoteTitle">
+                                     <label for="title">Title</label>
+                                     <input name = "title" type="email" class="form-control" id="createTitle" ng-model="user.title" placeholder="Enter title"
+                                            data-bv-notempty="true" data-bv-notempty-message="Title cannot be empty">
                                  </div>
                                  <div class="form-group">
                                     <label for="exampleInputPassword1">Note</label>
-                                    <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"></textarea>
+                                    <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"
+                                              data-bv-notempty="true" data-bv-notempty-message="Note content cannot be empty"></textarea>
                                  </div>
-                                    <button type="submit" class="btn btn-default" ng-click="create() ;reload(); creating= false">Save</button>
+                                    <button type="submit" class="btn btn-default" ng-click="create();">Save</button>
 
                                     <button type="submit" class="btn btn-default" ng-click="clear();reload(); creating=false" ng-click="creating=false" >Cancel</button>
+                                    <label for="errorMessage" style="color: red; font-style: italic;"> {{ errorMessage }} </label>
 
                             </span>
 
@@ -121,18 +115,18 @@
                             </span>
                         </div>
 
-
-
-
-
                 </div>
+
             </div>
+
+            <script src="assets/js/jquery.validate.min.js"></script>
             <script src="../javascripts/angular.js"></script>
             <script src="/javascripts/angular-cookies.js"></script>
             <script src="/javascripts/angular-route.js"></script>
             <script src="/javascripts/application.js"></script>
             <script src="/javascripts/noteServices.js"></script>
             <script src="/javascripts/notesController.js"></script>
+            <script src="/javascripts/validate.js"></script>
             </body>
             </div>
 
