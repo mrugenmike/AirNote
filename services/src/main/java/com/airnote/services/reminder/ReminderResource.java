@@ -5,11 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/remainder")
+@EnableScheduling
 public class ReminderResource {
     @Autowired @Qualifier("reminderService")
     ReminderService reminderService;
@@ -29,5 +34,13 @@ public class ReminderResource {
         }
         return reminderMetaInfos;
     }
+
+    //Scheduler component
+     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+        @Scheduled(fixedRate = 5)
+        public void reportCurrentTime() {
+            System.out.println("The time is now " + dateFormat.format(new Date()));
+        }
 
 }
