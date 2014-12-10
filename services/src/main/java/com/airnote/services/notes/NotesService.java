@@ -45,8 +45,8 @@ public class NotesService {
         });
     }
 
-    public  NoteMetaInfo updateNote(NoteUpdationRequest request, String accessToken) throws NoteNotFoundException {
-        Optional<NoteMetaInfo> noteInfoFetched = storageService.fetchNoteInfoBy(request.getUserId(), request.getNoteId());
+    public  NoteMetaInfo updateNote(NoteUpdationRequest request, String userId, String noteId, String accessToken) throws NoteNotFoundException {
+        Optional<NoteMetaInfo> noteInfoFetched = storageService.fetchNoteInfoBy(userId, noteId);
         if(noteInfoFetched.isPresent()) {
             boolean titleHasChanged = !(noteInfoFetched.get().getTitle()).equals(request.getTitle());
             if (titleHasChanged) {
@@ -56,10 +56,10 @@ public class NotesService {
                     e.printStackTrace();
                 }
                 final NoteMetadata noteUploadResponse = dropBoxClient.storeNote(accessToken, request.getTitle(), request.getContent());
-                noteInfoRecieved = storageService.updateNoteInfo(noteUploadResponse, request.getTitle(), noteInfoFetched.get().getUserId(), noteInfoFetched.get().getNoteId());
+                noteInfoRecieved = storageService.updateNoteInfo(noteUploadResponse, request.getTitle(), userId, noteId);
             } else {
                 NoteMetadata noteUpdateResponse = dropBoxClient.updateNote(noteInfoFetched.get().getFilePath(), accessToken, request.getContent());
-                noteInfoRecieved = storageService.updateNoteInfo(noteUpdateResponse, request.getTitle(), noteInfoFetched.get().getUserId(), noteInfoFetched.get().getNoteId());
+                noteInfoRecieved = storageService.updateNoteInfo(noteUpdateResponse, request.getTitle(), userId, noteId);
             }
         } else {
             throw new NoteNotFoundException();

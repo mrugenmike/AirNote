@@ -42,11 +42,9 @@ angular.module('AirNoteApp.noteServices', []).
         notesAPI.updateNote = function(title, contents, noteId, accessToken, userId){
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes',
+                url: 'http://localhost:8080/api/notes/'+userId +'/'+ noteId ,
                 data: {"title": title,
-                    "content": contents,
-                    "userId": userId,
-                    "noteId": noteId
+                    "content": contents
                     //"noteId": "547a7c0c0364648b83bc8170"
                 },
                 method: 'PUT'

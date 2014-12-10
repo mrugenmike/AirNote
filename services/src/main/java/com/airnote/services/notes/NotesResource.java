@@ -39,10 +39,10 @@ public class NotesResource {
         return notesService.fetchNote(userId, noteId, accessToken).orElseThrow(NoteNotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(value={"/{userId}/{noteId}"},method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public NoteMetaInfo updateNote(@RequestBody NoteUpdationRequest request, @RequestHeader("Authorization") String accessToken) throws NoteNotFoundException {
-        return notesService.updateNote(request,accessToken);
+    public NoteMetaInfo updateNote(@RequestBody NoteUpdationRequest request, @PathVariable String userId,@PathVariable String noteId, @RequestHeader("Authorization") String accessToken) throws NoteNotFoundException {
+        return notesService.updateNote(request, userId, noteId, accessToken);
     }
 
     @RequestMapping(value={"/{userId}/{noteId}"},method=RequestMethod.DELETE)

@@ -1,8 +1,5 @@
 package com.airnote.services.notes;
 
-/**
- * Created by Ramya on 10/25/2014.
- */
 public class NotesContent {
     String accessToken;
     String userName;
