@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Component("reminderService")
 public class ReminderService {
     @Autowired
@@ -18,4 +20,7 @@ public class ReminderService {
         return reminderStorageService.storeRemainderInfo(request.getUserId(), request.getEmailId(), request.getEventAt(), request.getContent());
     }
 
+    public List<ReminderMetaInfo> fetchReminders(String userId, Integer skip, Integer limit) {
+        return reminderStorageService.fetchAllRemindersByUserId(userId,skip,limit);
+    }
 }
