@@ -6,14 +6,14 @@ angular.module('AirNoteApp.noteServices', []).
         notesAPI.getUserInfo = function(accessToken) {
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/users'
+                url: 'localhost:8080/api/users'
             });
         }
 
         notesAPI.listNotes = function(accessToken,userId) {
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes/' + userId
+                url: 'localhost:8080/api/notes/' + userId
             });
         }
 
@@ -22,7 +22,7 @@ angular.module('AirNoteApp.noteServices', []).
             console.log(contents);
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes',
+                url: 'localhost:8080/api/notes',
                 data: {"title": title,
                     "content": contents,
                     "userId": userId
@@ -34,7 +34,7 @@ angular.module('AirNoteApp.noteServices', []).
         notesAPI.fetchNote = function(accessToken, userId, noteId){
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes/'+ userId +'/'+noteId
+                url: 'localhost:8080/api/notes/'+ userId +'/'+noteId
                 //url: 'http://localhost:8080/api/notes/'+ userId +'/54562835a8262eb8960d7f04'
                 });
         }
@@ -42,7 +42,7 @@ angular.module('AirNoteApp.noteServices', []).
         notesAPI.updateNote = function(title, contents, noteId, accessToken, userId){
             return $http({
                 headers: {'Authorization': 'Bearer '+ accessToken},
-                url: 'http://localhost:8080/api/notes/'+userId +'/'+ noteId ,
+                url: 'localhost:8080/api/notes/'+userId +'/'+ noteId ,
                 data: {"title": title,
                     "content": contents
                     //"noteId": "547a7c0c0364648b83bc8170"
@@ -55,7 +55,7 @@ angular.module('AirNoteApp.noteServices', []).
             console.log('note id' + noteId);
             return $http({
                 headers: {'Authorization': 'Bearer '+accessToken},
-                url: 'http://localhost:8080/api/notes/'+userId+'/'+ noteId,
+                url: 'localhost:8080/api/notes/'+userId+'/'+ noteId,
                 //url: 'http://localhost:8080/api/notes/'+userId+'/54562835a8262eb8960d7f04',
                 method: 'DELETE'
             })
