@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
+import com.sendgrid.*;
 
 import java.net.UnknownHostException;
 
@@ -49,4 +50,7 @@ public class TestNoteAppConfiguration {
     DBCollection getRemainderCollection() throws UnknownHostException {
         return getMongoClient().getDB(mongoDatabase).getCollection("reminderMetaInfo");
     }
+
+    @Bean(name ={"sendGrid"})
+    SendGrid sendGridEmail() { return new SendGrid("mrugen.deshmukh@sjsu.edu" ,"airnote@123");}
 }

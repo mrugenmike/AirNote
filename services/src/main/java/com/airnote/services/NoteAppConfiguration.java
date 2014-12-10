@@ -56,7 +56,7 @@ public class NoteAppConfiguration {
         return getMongoClient().getDB(mongoDatabase).getCollection("reminderMetaInfo");
     }
 
-    @Bean
+    @Bean(name ={"sendGrid"})
     SendGrid sendGridEmail() { return new SendGrid("mrugen.deshmukh@sjsu.edu" ,"airnote@123");}
 
 }
