@@ -4,6 +4,7 @@ import com.mongodb.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,9 +27,10 @@ public class NoteStorageServiceImpl implements NoteStorageService {
     }
 
     @Override
-    public List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit) {
+    public List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit, Integer skip) {
         DBObject byUserId = QueryBuilder.start("userId").is(userId).get();
-        return noteMetaInfos.find(byUserId).limit(limit).toArray().stream().map(info-> NoteMetaInfo.instance(info)).collect(Collectors.toList());
+        DBObject byUpdatedDate = new BasicDBObject("modified",-1);
+        return noteMetaInfos.find(byUserId).limit(limit).skip(skip).sort(byUpdatedDate).toArray().stream().map(info-> NoteMetaInfo.instance(info)).collect(Collectors.toList());
     }
 
     @Override

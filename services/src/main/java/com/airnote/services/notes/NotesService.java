@@ -29,8 +29,8 @@ public class NotesService {
         return storageService.storeNoteInfo(noteUploadResponse, request.getTitle(), request.getUserId());
     }
 
-    public List<NoteMetaInfo> fetchNotesMetaInfo(String userId, Integer limit) {
-        return storageService.fetchAllNoteMetaInfoByUserId(userId, limit);
+    public List<NoteMetaInfo> fetchNotesMetaInfo(String userId, Integer limit, Integer skip) {
+        return storageService.fetchAllNoteMetaInfoByUserId(userId, limit,skip);
     }
 
     public Optional<Note> fetchNote(String userId, String noteId, String accessToken){

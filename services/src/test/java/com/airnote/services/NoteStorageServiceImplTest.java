@@ -40,7 +40,7 @@ public class NoteStorageServiceImplTest {
     @Test
     public void shouldFindNotesByUserId() {
  noteStorageService.storeNoteInfo(new NoteMetadata(), "myNote.txt", "1234");
-        List<NoteMetaInfo> noteMetaInfos = noteStorageService.fetchAllNoteMetaInfoByUserId("1234", 10);
+        List<NoteMetaInfo> noteMetaInfos = noteStorageService.fetchAllNoteMetaInfoByUserId("1234", 10, 0);
 
         assertThat(noteMetaInfos.size()).isEqualTo(1);
     }
@@ -49,7 +49,7 @@ public class NoteStorageServiceImplTest {
     public void shouldNoFindNotesByUserId() {
        noteStorageService.storeNoteInfo(new NoteMetadata(), "myNote.txt", "1234");
 
-        List<NoteMetaInfo> noteMetaInfos = noteStorageService.fetchAllNoteMetaInfoByUserId("5678", 10);
+        List<NoteMetaInfo> noteMetaInfos = noteStorageService.fetchAllNoteMetaInfoByUserId("5678", 10, 0);
 
         assertThat(noteMetaInfos.size()).isZero();
     }

@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface NoteStorageService {
     NoteMetaInfo storeNoteInfo(NoteMetadata noteUploadResponse, String title, String userId);
 
-    List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit);
+    List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit, Integer skip);
 
     Optional<NoteMetaInfo> fetchNoteInfoBy(String userId, String noteId);
 
