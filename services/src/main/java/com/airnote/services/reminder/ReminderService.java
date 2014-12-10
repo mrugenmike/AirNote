@@ -23,4 +23,8 @@ public class ReminderService {
     public List<ReminderMetaInfo> fetchReminders(String userId, Integer skip, Integer limit) {
         return reminderStorageService.fetchAllRemindersByUserId(userId,skip,limit);
     }
+
+    public void deleteReminder(String userId, String reminderId) {
+        reminderStorageService.removeReminder(userId,reminderId);
+    }
 }

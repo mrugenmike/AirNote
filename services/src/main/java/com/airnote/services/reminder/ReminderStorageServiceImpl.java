@@ -3,6 +3,7 @@ package com.airnote.services.reminder;
 
 import com.airnote.services.notes.NoteMetaInfo;
 import com.mongodb.*;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
         DBObject byEventDate = new BasicDBObject("eventAt",-1);
         return remainderMetaInfos.find(byUserId).limit(limit).skip(skip).sort(byEventDate).toArray().stream().map(info-> ReminderMetaInfo.instance(info)).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public void removeReminder(String userId, String reminderId) {
+        remainderMetaInfos.remove(new BasicDBObject("_id", new ObjectId(reminderId)).append("userId",userId),WriteConcern.FSYNCED);
     }
 }
