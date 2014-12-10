@@ -1,0 +1,15 @@
+9 Dec 15:18:12 - [33m[nodemon] v1.2.1[39m
+9 Dec 15:18:12 - [33m[nodemon] to restart at any time, enter `rs`[39m
+9 Dec 15:18:12 - [33m[nodemon] watching: *.*[39m
+9 Dec 15:18:12 - [32m[nodemon] starting `node start ./bin/www`[39m
+
+module.js:340
+    throw err;
+          ^
+Error: Cannot find module '/Users/dhavalkolapkar/Documents/ProjectWorkspace/AirNote/application/start'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:906:3
+9 Dec 15:18:12 - [31m[nodemon] app crashed - waiting for file changes before starting...[39m
