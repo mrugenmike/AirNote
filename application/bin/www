@@ -4,6 +4,7 @@ var app = require('../app');
 var https = require('https');
 var http = require('http');
 var fs = require("fs")
+var path = require("path")
 
 //app.set('port', process.env.PORT || 3000);
 
@@ -14,7 +15,7 @@ var fs = require("fs")
 http.createServer(app).listen(80);
 
 var options = {
-  key: fs.readFileSync('./private-key.pem'),
-  cert: fs.readFileSync('./ssl-cert.cer')
+  key: fs.readFileSync(path.join(__dirname,'/private-key.pem')),
+  cert: fs.readFileSync(path.join(__dirname,'/ssl-cert.cer'))
 }
 https.createServer(options, app).listen(443);
