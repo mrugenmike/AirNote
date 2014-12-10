@@ -12,9 +12,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("api/remainder")
+@RequestMapping("api/reminder")
 @EnableScheduling
 public class ReminderResource {
     @Autowired @Qualifier("reminderService")
@@ -34,6 +35,18 @@ public class ReminderResource {
             throw new NoContentException();
         }
         return reminderMetaInfos;
+    }
+
+    @RequestMapping(value={"/{userId}/{reminderId}"},method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public ReminderMetaInfo fetchReminder(@PathVariable String userId,@PathVariable String reminderId){
+        return reminderService.fetchReminderContent(userId, reminderId);
+    }
+
+    @RequestMapping(value = {"/{userId}/{reminderId}"},method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ReminderMetaInfo updateReminder(@RequestBody ReminderUpdationRequest request, @PathVariable String userId, @PathVariable String reminderId) {
+        return reminderService.updateReminder(request, userId, reminderId);
     }
 
     @RequestMapping(value = {"/{userId}/{reminderId}"},method = RequestMethod.DELETE)

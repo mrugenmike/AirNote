@@ -18,18 +18,37 @@ public class ReminderMetaInfo {
     @JsonProperty private final String emailId;
     @JsonProperty private final @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ") Date eventAt;
     @JsonProperty private final String content;
-    @JsonProperty private Date createdAt;
     @JsonProperty private Date modifiedAt;
-    @JsonProperty private boolean emailSent = false;
+    @JsonProperty private boolean emailSent;
     private Date today = Calendar.getInstance().getTime();
 
-    public ReminderMetaInfo(String userId, String emailId, Date eventAt, String content) {
+    public ReminderMetaInfo(String userId, String emailId, Date eventAt, String content, boolean emailSent) {
         this.userId = userId;
         this.emailId = emailId;
         this.eventAt = eventAt;
         this.content = content;
-        this.createdAt = today;
+        this.emailSent = emailSent;
         this.modifiedAt = today;
+    }
+
+    public Date getEventAt() {
+        return eventAt;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public boolean isEmailSent() {
+        return emailSent;
+    }
+
+    public void setEmailSent(boolean emailSent) {
+        this.emailSent = emailSent;
     }
 
     public void setModifiedAt() {
@@ -51,7 +70,6 @@ public class ReminderMetaInfo {
                 .add("emailId",emailId)
                 .add("eventAt",eventAt)
                 .add("content",content)
-                .add("createdAt",createdAt)
                 .add("modifiedAt",modifiedAt)
                 .add("emailSent",emailSent)
                 .get();
@@ -59,7 +77,7 @@ public class ReminderMetaInfo {
 
     public static ReminderMetaInfo instance(DBObject info) {
 
-        ReminderMetaInfo reminderMetaInfo = new ReminderMetaInfo(info.get("userId").toString(), info.get("emailId").toString(), (Date)info.get("eventAt"), info.get("content").toString());
+        ReminderMetaInfo reminderMetaInfo = new ReminderMetaInfo(info.get("userId").toString(), info.get("emailId").toString(), (Date)info.get("eventAt"), info.get("content").toString(), (boolean)info.get("emailSent"));
         reminderMetaInfo.setReminderId(info.get("_id").toString());
         return reminderMetaInfo;
     }
