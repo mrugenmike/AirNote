@@ -25,10 +25,10 @@ public class NotesResource {
 
     @RequestMapping(value={"/{userId}"},method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<NoteMetaInfo> fetchListofNotes(@PathVariable String userId, @RequestParam(defaultValue = "10") Integer limit,@RequestParam(defaultValue = "0") Integer skip) throws NoContentException {
+    public NotesMetaInfoResponse fetchListofNotes(@PathVariable String userId, @RequestParam(defaultValue = "10") Integer limit,@RequestParam(defaultValue = "0") Integer skip) throws NoContentException {
         List<NoteMetaInfo> noteMetaInfos = notesService.fetchNotesMetaInfo(userId, limit,skip);
         if(noteMetaInfos.size()>0)
-            return noteMetaInfos;
+            return new NotesMetaInfoResponse(noteMetaInfos,notesService.totalNotesByUserId(userId));
         else
             throw new NoContentException();
     }

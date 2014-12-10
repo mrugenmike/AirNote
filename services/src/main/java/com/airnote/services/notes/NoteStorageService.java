@@ -13,4 +13,6 @@ public interface NoteStorageService {
     NoteMetaInfo updateNoteInfo(NoteMetadata noteUploadResponse, String title, String userId, String noteId);
 
     void deleteNoteMetaInfo(String userId, String noteId);
+
+    Long findTotalNotesBy(String userId);
 }

@@ -76,4 +76,8 @@ public class NotesService {
             throw new NoteDeletionException("No Note Found with id "+noteId);
         }
     }
+
+    public Long totalNotesByUserId(String userId) {
+        return storageService.findTotalNotesBy(userId);
+    }
 }

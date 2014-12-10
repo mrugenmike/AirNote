@@ -31,7 +31,7 @@ public class NoteStorageServiceImpl implements NoteStorageService {
     public List<NoteMetaInfo> fetchAllNoteMetaInfoByUserId(String userId, Integer limit, Integer skip) {
         DBObject byUserId = QueryBuilder.start("userId").is(userId).get();
         DBObject byUpdatedDate = new BasicDBObject("modified",-1);
-        return noteMetaInfos.find(byUserId).limit(limit).skip(skip).sort(byUpdatedDate).toArray().stream().map(info-> NoteMetaInfo.instance(info)).collect(Collectors.toList());
+        return noteMetaInfos.find(byUserId).limit(limit).skip(skip).sort(byUpdatedDate).toArray().stream().map(info -> NoteMetaInfo.instance(info)).collect(Collectors.toList());
     }
 
     @Override
@@ -57,5 +57,10 @@ public class NoteStorageServiceImpl implements NoteStorageService {
     public void deleteNoteMetaInfo(String userId, String noteId) {
         DBObject byIdandUserId = QueryBuilder.start("_id").is(noteId).and("userId").is(userId).get();
         noteMetaInfos.remove(byIdandUserId,WriteConcern.ACKNOWLEDGED);
+    }
+
+    @Override
+    public Long findTotalNotesBy(String userId) {
+        return noteMetaInfos.count(new BasicDBObject("userId",userId));
     }
 }
