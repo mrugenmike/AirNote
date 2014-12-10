@@ -1,6 +1,7 @@
 package com.airnote.services.reminder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 
@@ -8,7 +9,7 @@ public class ReminderCreationRequest {
 
     @JsonProperty("userId") String userId;
     @JsonProperty("emailId") String emailId;
-    @JsonProperty("eventAt") String eventAt;
+    @JsonProperty("eventAt") @JsonDeserialize(using = CustomDateSerializer.class) Date eventAt;
     @JsonProperty("content") String content;
 
     public String getUserId() {
@@ -19,7 +20,7 @@ public class ReminderCreationRequest {
         return emailId;
     }
 
-    public String getEventAt() {
+    public Date getEventAt() {
         return eventAt;
     }
 
