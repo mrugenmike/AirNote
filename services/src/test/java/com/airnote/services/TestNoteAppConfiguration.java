@@ -44,4 +44,9 @@ public class TestNoteAppConfiguration {
     DBCollection getNotesCollection() throws UnknownHostException {
         return getMongoClient().getDB(mongoDatabase).getCollection("noteMetaInfo");
     }
+
+    @Bean(name ={"reminderMetaInfo"})
+    DBCollection getRemainderCollection() throws UnknownHostException {
+        return getMongoClient().getDB(mongoDatabase).getCollection("reminderMetaInfo");
+    }
 }

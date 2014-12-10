@@ -4,6 +4,7 @@ import com.airnote.services.integration.DropBoxClient;
 import com.airnote.services.integration.FileContentException;
 import com.airnote.services.integration.NoteDeletionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 @Component
 public class NotesService {
     @Autowired
-    RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate;
 
     @Autowired
     DropBoxClient dropBoxClient;

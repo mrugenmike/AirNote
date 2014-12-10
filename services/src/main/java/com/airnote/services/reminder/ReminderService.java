@@ -2,15 +2,20 @@ package com.airnote.services.reminder;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+@Component("reminderService")
 public class ReminderService {
     @Autowired
-    RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate;
 
-    @Autowired
-    ReminderStorageService storageService;
+    @Autowired @Qualifier("reminderStorageService")
+    ReminderStorageService reminderStorageService;
+
+    public ReminderMetaInfo createReminder(ReminderCreationRequest request) {
+        return reminderStorageService.storeRemainderInfo(request.getUserId(), request.getEmailId(), request.getEventAt(), request.getContent());
+    }
 
 }
