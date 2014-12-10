@@ -12,5 +12,5 @@ import org.springframework.context.annotation.ComponentScan;
 public interface ReminderEmailService {
 
 
-    void sendGridEmail(String fromEmail, String toEmail, String subject, String body);
+    void send(String fromEmail, String toEmail, String subject, String body);
 }

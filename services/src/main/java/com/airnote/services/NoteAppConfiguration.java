@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.UnknownHostException;
@@ -20,6 +21,7 @@ import java.net.UnknownHostException;
 
 @EnableAutoConfiguration
 @ComponentScan
+@EnableScheduling
 @PropertySource(value = "classpath:/app.properties",ignoreResourceNotFound = false)
 public class NoteAppConfiguration {
 

@@ -36,14 +36,6 @@ public class ReminderResource {
         return reminderMetaInfos;
     }
 
-    //Scheduler component
-     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-        @Scheduled(fixedRate = 5)
-        public void reportCurrentTime() {
-            System.out.println("The time is now " + dateFormat.format(new Date()));
-        }
-
     @RequestMapping(value = {"/{userId}/{reminderId}"},method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> deleteReminder(@PathVariable String userId,@PathVariable String reminderId){
