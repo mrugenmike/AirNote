@@ -1,10 +1,10 @@
 package com.airnote.services.reminder;
 
-
 import java.util.List;
+import java.util.Date;
 
 public interface ReminderStorageService {
-    ReminderMetaInfo storeRemainderInfo(String userId, String emailId, String eventAt, String content);
+    ReminderMetaInfo storeRemainderInfo(String userId, String emailId, Date eventAt, String content);
 
     List<ReminderMetaInfo> fetchAllRemindersByUserId(String userId, Integer skip, Integer limit);
 

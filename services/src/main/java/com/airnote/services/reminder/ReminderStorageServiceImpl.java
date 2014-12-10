@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Date;
 
 @Service("reminderStorageService")
 public class ReminderStorageServiceImpl implements ReminderStorageService {
@@ -22,7 +23,7 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
     }
 
     @Override
-    public ReminderMetaInfo storeRemainderInfo(String userId, String emailId, String eventAt, String content) {
+    public ReminderMetaInfo storeRemainderInfo(String userId, String emailId, Date eventAt, String content) {
         final ReminderMetaInfo metaInfo = new ReminderMetaInfo(userId, emailId, eventAt, content);
         remainderMetaInfos.insert(metaInfo.asDBObject(), WriteConcern.ACKNOWLEDGED);
         return metaInfo;
