@@ -60,6 +60,7 @@ router.get('/logout', function(req,res){
     res.clearCookie('userName',{path:'/'});
     res.clearCookie('uid',{path:'/'});
     res.clearCookie('csrf',{path:'/'});
+    req.session.destroy();
     res.redirect("/");
 })
 
