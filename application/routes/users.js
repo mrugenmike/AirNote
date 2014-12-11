@@ -65,7 +65,9 @@ router.get('/logout', function(req,res){
 })
 
 router.get('/auth',function(req,res){
-  client.authenticateUser(req,res);
+  req.session.destroy(function(){
+      client.authenticateUser(req,res);
+  });
 })
 
 module.exports = router;
