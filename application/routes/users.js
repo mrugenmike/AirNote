@@ -59,11 +59,16 @@ router.get('/logout', function(req,res){
     res.clearCookie('accessToken',{path:'/'});
     res.clearCookie('userName',{path:'/'});
     res.clearCookie('uid',{path:'/'});
+    res.clearCookie('csrf',{path:'/'});
+    req.session.destroy();
     res.redirect("/");
 })
 
 router.get('/auth',function(req,res){
-  client.authenticateUser(req,res);
+  req.session.destroy(function(){
+    console.log("destroying session");
+  });
+    client.authenticateUser(req,res);
 })
 
 module.exports = router;
