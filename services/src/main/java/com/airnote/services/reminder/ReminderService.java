@@ -46,4 +46,8 @@ public class ReminderService {
     public void deleteReminder(String userId, String reminderId) {
         reminderStorageService.removeReminder(userId,reminderId);
     }
+
+    public Long totalRemindersByUserId(String userId) {
+        return reminderStorageService.findTotalRemindersBy(userId);
+    }
 }

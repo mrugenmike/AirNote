@@ -14,4 +14,6 @@ public interface ReminderStorageService {
     ReminderMetaInfo updateReminderInfo(ReminderMetaInfo reminderInfoFetched, Date eventAt, String content);
 
     void removeReminder(String userId, String reminderId);
+
+    Long findTotalRemindersBy(String userId);
 }

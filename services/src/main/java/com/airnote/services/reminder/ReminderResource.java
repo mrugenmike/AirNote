@@ -29,12 +29,13 @@ public class ReminderResource {
 
     @RequestMapping(value = {"/{userId}"},method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<ReminderMetaInfo> fetchReminders(@PathVariable String userId,@RequestParam(defaultValue = "0") Integer skip,@RequestParam(defaultValue = "10")Integer limit) throws NoContentException {
+    public ReminderMetaInfoResponse fetchListofReminders(@PathVariable String userId,@RequestParam(defaultValue = "0") Integer skip,@RequestParam(defaultValue = "10")Integer limit) throws NoContentException {
         List<ReminderMetaInfo> reminderMetaInfos = reminderService.fetchReminders(userId, skip, limit);
-        if (reminderMetaInfos.isEmpty()){
+        if (reminderMetaInfos.size()>0) {
+            return new ReminderMetaInfoResponse(reminderMetaInfos,reminderService.totalRemindersByUserId(userId));
+        } else {
             throw new NoContentException();
         }
-        return reminderMetaInfos;
     }
 
     @RequestMapping(value={"/{userId}/{reminderId}"},method = RequestMethod.GET)

@@ -61,4 +61,10 @@ public class ReminderStorageServiceImpl implements ReminderStorageService {
     public void removeReminder(String userId, String reminderId) {
         reminderMetaInfos.remove(new BasicDBObject("_id", new ObjectId(reminderId)).append("userId",userId),WriteConcern.FSYNCED);
     }
+
+    @Override
+    public Long findTotalRemindersBy(String userId) {
+        return reminderMetaInfos.count(new BasicDBObject("userId",userId));
+    }
+
 }
