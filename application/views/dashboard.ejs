@@ -12,25 +12,9 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!-- date picker -->
 
-    <link type="text/css" href="css/bootstrap.min.css" />
-    <link type="text/css" href="css/bootstrap-timepicker.min.css" />
-
-    <script src="code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $( "#datepicker" ).datepicker();
-        });
-    </script>
-
-
-    <!--Time picker -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-2.2.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-    <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-2.2.2.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-</head>
 
 </head>
 <body class="blueprint fixed-navbar" ng-app="AirNoteApp" ng-controller="notesController">
@@ -50,15 +34,15 @@
     </div>
 </div>
 
-<div id="px-open-header" class="background-gradient-4 px-profile fixed-header jumbotron">
+<div id="px-open-header" class="background-gradient-4 px-profile fixed-header jumbotron" style="height:1px">
     <canvas id="animated-canvas"></canvas>
     <div class="bg-overlay bg-overlay-on"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-10 col-lg-offset-1">
-                <div><i class="icon-globe icon-60"></i></div>
-                <h1>AirNote</h1>
-                <p>Welcome {{username}}</p>
+
+                <h2>AirNote</h2>
+
             </div>
         </div>
     </div>
@@ -126,7 +110,7 @@
 
                     <li class="col-md-4" ng-hide="creating" ng-hide="creatingReminder">
 
-                        <button class="btn btn-default" ng-click="creating = true; editing = false; creatingReminder=false" ng-disabled ="editing" style="margin-right : 100px"><b>
+                        <button class="btn btn-default" ng-click="creating = true; editing = false; creatingReminder=false" ng-disabled ="creatingReminder" style="margin-right : 100px"><b>
                                 <span class="glyphicon glyphicon-pencil"></span> New Note</b></button>
                     </li>
                 </form>
@@ -138,7 +122,7 @@
 
                     <li class="col-md-4" ng-hide="creatingReminder" ng-hide="creating" >
 
-                        <button class="btn btn-default" ng-click="creatingReminder = true; editingReminder = false; creating=false; editing = false" ng-disabled ="editingReminder; creating; editing" style="margin-right : 100px"><b>
+                        <button class="btn btn-default" ng-click="creatingReminder = true; editingReminder = false; creating=false; editing = false" ng-disabled ="creating" style="margin-right : 100px"><b>
                                 <span class="glyphicon glyphicon-bell"></span> Set new reminder</b></button>
                     </li>
                 </form>
@@ -150,13 +134,11 @@
                             <span ng-show="creating" >
                                  <div class="form-group">
                                      <label for="title">Title</label>
-                                     <input name = "title" type="email" class="form-control" id="createTitle" ng-model="user.title" placeholder="Enter title"
-                                            data-bv-notempty="true" data-bv-notempty-message="Title cannot be empty">
+                                     <input name = "title" type="email" class="form-control" id="createTitle" ng-model="user.title" placeholder="Enter title">
                                  </div>
                                  <div class="form-group">
                                      <label for="exampleInputPassword1">Note</label>
-                                     <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"
-                                               data-bv-notempty="true" data-bv-notempty-message="Note content cannot be empty"></textarea>
+                                     <textarea ng-model="newNoteContent" id ="createContent" class="form-control" rows="6"></textarea>
                                  </div>
                                     <button type="submit" class="btn btn-default" ng-click="create();">Save</button>
 
@@ -186,20 +168,10 @@
                              <span ng-show="creatingReminder" >
 
                                  <div class="form-group">
-                                     <h1></h1>
-                                     <p>Date: <input type="text" id="datepicker"></p>
+                                     
                                  </div>
                                  <div class="form-group">
-                                     <div class="input-append bootstrap-timepicker">
-                                         <p> Time:
-                                             <input id="timepicker1" type="text" class="input-small">
-                                             <span class="add-on"><i class="icon-time"></i></span>
-                                         </p>
-                                     </div>
 
-                                     <script type="text/javascript">
-                                         $('#timepicker1').timepicker();
-                                     </script>
                                  </div>
 
                                      <!--Content-->
