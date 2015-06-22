@@ -52,5 +52,5 @@ public class TestNoteAppConfiguration {
     }
 
     @Bean(name ={"sendGrid"})
-    SendGrid sendGridEmail() { return new SendGrid("mrugen.deshmukh@sjsu.edu" ,"airnote@123");}
+    SendGrid sendGridEmail() { return new SendGrid("dummy@email.com" ,"dummy@creds");}
 }
